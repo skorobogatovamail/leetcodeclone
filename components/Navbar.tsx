@@ -1,6 +1,6 @@
 import React from 'react';
-import Logo from '../Logo/Logo';
-import { Button } from '../ui/button';
+import Logo from './Logo';
+import { Button } from './ui/button';
 
 type NavbarProps = {
 
