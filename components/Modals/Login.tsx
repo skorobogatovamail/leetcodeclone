@@ -2,11 +2,13 @@ import React from 'react';
 import BasicModal from './BasicModal';
 import { Button } from '../ui/button';
 import Link from 'next/link';
+import { useAppDispatch } from '@/lib/hooks';
 type LoginProps = {
 
 };
 
 const Login: React.FC<LoginProps> = () => {
+    const dispatch = useAppDispatch()
     return (
         <BasicModal title='Login to Leetcodeclone'>
             <form>
