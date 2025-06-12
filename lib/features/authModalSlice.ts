@@ -1,28 +1,29 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
-interface AuthModalState {
+export interface AuthModalState {
     isOpened: boolean,
-    type: 'login' | 'register' | 'forgotPassword' | null
+    modalType: 'login' | 'register' | 'resetPassword' | null
 }
 
 const initialState: AuthModalState = {
     isOpened: false,
-    type: null
+    modalType: null
 }
 
 export const authModalSlice = createSlice({
     name: 'authModal',
     initialState,
     reducers: {
-        openAuthModal: (state) => {
+        openAuthModal: (state, action: PayloadAction<AuthModalState['modalType']>) => {
             state.isOpened = true
+            state.modalType = action.payload
         },
         closeAuthModal: (state) => {
             state.isOpened = false
         },
-        setAuthModalType: (state, action: PayloadAction<AuthModalState['type']>) => {
-            state.type = action.payload
-        }
     }
 })
+
+export const { openAuthModal, closeAuthModal } = authModalSlice.actions;
+export default authModalSlice.reducer
 

@@ -5,10 +5,16 @@ import Signup from "@/components/Modals/Signup";
 import Subtitle from "@/components/Subtitle";
 import Title from "@/components/Title";
 import { Button } from "@/components/ui/button";
+import { RootState } from "@/lib/store";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 export default function Home() {
+
+  const isOpened = useSelector((state: RootState) => state.authModal.isOpened);
+  const modalType = useSelector((state: RootState) => state.authModal.modalType);
+
   return (
     <div className="px-8 sm:px-20 bg-gradient-to-b from-slate-50 to-white">
       <main className="px-15">
@@ -31,7 +37,9 @@ export default function Home() {
         <section className="py-12 px-4">
           <Features />
         </section>
-        <Login />
+        {isOpened && modalType === 'login' && <Login />}
+        {isOpened && modalType === 'register' && <Signup />}
+        {isOpened && modalType === 'resetPassword' && <ResetPassword />}
       </main>
     </div>
   );
