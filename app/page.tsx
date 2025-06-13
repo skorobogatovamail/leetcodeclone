@@ -1,3 +1,5 @@
+"use client";
+
 import Features from "@/components/Features";
 import Login from "@/components/Modals/Login";
 import ResetPassword from "@/components/Modals/ResetPassword";
@@ -11,9 +13,10 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 
 export default function Home() {
-
   const isOpened = useSelector((state: RootState) => state.authModal.isOpened);
-  const modalType = useSelector((state: RootState) => state.authModal.modalType);
+  const modalType = useSelector(
+    (state: RootState) => state.authModal.modalType
+  );
 
   return (
     <div className="px-8 sm:px-20 bg-gradient-to-b from-slate-50 to-white">
@@ -26,9 +29,10 @@ export default function Home() {
           <Subtitle
             className="max-w-[600px]"
             text="Our platform is tailored to help you prepare for coding interviews smoothly. 
-          Developed by interviewers from top tech companies." />
+          Developed by interviewers from top tech companies."
+          />
           <Link href="/questions">
-            <Button size='lg' className="gap-1">
+            <Button size="lg" className="gap-1">
               <span>Browse Questions</span>
               <ArrowRight />
             </Button>
@@ -37,9 +41,9 @@ export default function Home() {
         <section className="py-12 px-4">
           <Features />
         </section>
-        {isOpened && modalType === 'login' && <Login />}
-        {isOpened && modalType === 'register' && <Signup />}
-        {isOpened && modalType === 'resetPassword' && <ResetPassword />}
+        {isOpened && modalType === "login" && <Login />}
+        {isOpened && modalType === "register" && <Signup />}
+        {isOpened && modalType === "resetPassword" && <ResetPassword />}
       </main>
     </div>
   );
