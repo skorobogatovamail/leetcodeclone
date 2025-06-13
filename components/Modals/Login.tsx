@@ -1,7 +1,6 @@
 import React from "react";
 import BasicModal from "./BasicModal";
 import { Button } from "../ui/button";
-// import Link from "next/link";
 import { useAppDispatch } from "@/lib/hooks";
 import { AuthModalState, openAuthModal } from "@/lib/features/authModalSlice";
 
@@ -63,7 +62,6 @@ const Login: React.FC = () => {
           </div>
           <div className="pt-2 text-sm flex gap-2 items-center">
             <span>Not registered yet?</span>
-            {/* <Link href='/signup' className='text-blue-500 hover:underline'>Create account</Link> */}
             <Button
               variant="link"
               className="text-blue-500 hover:underline p-0"
@@ -73,7 +71,6 @@ const Login: React.FC = () => {
             </Button>
           </div>
           <div className="pt-2">
-            {/* <Link className='text-gray-500 text-sm hover:underline' href='/resetPassword'>Forgot your password?</Link> */}
             <Button
               variant="link"
               className="text-gray-500 text-sm hover:underline p-0"
