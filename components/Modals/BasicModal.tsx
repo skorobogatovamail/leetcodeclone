@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect } from "react";
 import { X } from "lucide-react";
 import { Button } from "../ui/button";
 import Title from "../Title";
@@ -18,6 +20,15 @@ const BasicModal: React.FC<React.PropsWithChildren<BasicModalProps>> = ({
   const handleClick = () => {
     dispatch(closeAuthModal());
   };
+
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") dispatch(closeAuthModal());
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, []);
+
   return (
     <>
       <div className="absolute top-0 left-0 w-full h-full items-center justify-center bg-slate-400 opacity-80"></div>
