@@ -1,20 +1,72 @@
-import React from "react";
+import React, { useState } from "react";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import BasicModal from "./BasicModal";
 import { Button } from "../ui/button";
-import Link from "next/link";
 import { AuthModalState, openAuthModal } from "@/lib/features/authModalSlice";
 import { useAppDispatch } from "@/lib/hooks";
+import { auth } from "@/firebase/firebase";
+import { useRouter } from "next/router";
+
 type SignupProps = {};
 
 const Signup: React.FC<SignupProps> = () => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+
   const handleClick = (type: AuthModalState["modalType"]) => {
     dispatch(openAuthModal(type));
   };
+  const [inputs, setInputs] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const newUser = await createUserWithEmailAndPassword(
+        inputs.email,
+        inputs.password
+      );
+
+      if (!newUser) return;
+      router.push("/");
+    } catch (err) {
+      if (err) alert(err.message);
+    }
+  };
+
   return (
     <BasicModal title="Create an account">
-      <form>
+      <form onSubmit={handleRegister}>
         <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1">
+            <label htmlFor="name" className="text-sm font-medium text-gray-500">
+              Your name
+            </label>
+            <input
+              name="name"
+              id="name"
+              type="text"
+              className="
+                        border
+                        border-slate-300 
+                        rounded-md 
+                        outline-none bg-white p-2 text-sm text-gray-500 placeholder-gray-400
+                        focus:border-blue-500"
+              placeholder="John Doe"
+              value={inputs.name}
+              onChange={handleChangeInput}
+            />
+          </div>
+
           <div className="flex flex-col gap-1">
             <label
               htmlFor="email"
@@ -33,6 +85,8 @@ const Signup: React.FC<SignupProps> = () => {
                         outline-none bg-white p-2 text-sm text-gray-500 placeholder-gray-400
                         focus:border-blue-500"
               placeholder="email@example.com"
+              value={inputs.email}
+              onChange={handleChangeInput}
             />
           </div>
 
@@ -54,6 +108,8 @@ const Signup: React.FC<SignupProps> = () => {
                         outline-none bg-white p-2 text-sm text-gray-500 placeholder-gray-400
                         focus:border-blue-500"
               placeholder="*******"
+              value={inputs.password}
+              onChange={handleChangeInput}
             />
           </div>
           <div className="pt-2">
