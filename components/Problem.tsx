@@ -1,9 +1,11 @@
 import { Problem as ProblemType } from "@/data/problems";
 import { cn } from "@/lib/utils";
 import { ArrowRight, Check, Flame } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 const Problem: React.FC<ProblemType> = ({
+  id,
   title,
   difficulty,
   category,
@@ -11,14 +13,19 @@ const Problem: React.FC<ProblemType> = ({
   //   videoId,
 }) => {
   return (
-    <div className="hover:bg-neutral-100 rounded-t-lg">
+    <div className="hover:bg-neutral-100 rounded-t-lg relative">
       <div className="px-6 py-5 flex gap-10 justify-between items-center">
         <div>{order}</div>
         <div>
           <Check className=" text-green-500" />
         </div>
         <div className="grow">
-          <p className="text-md font-semibold text-neutral-900">{title}</p>
+          <span className="text-md font-semibold text-neutral-900 ">
+            <Link href={`/tasks/${id}`}>
+              <span className="absolute inset-0"></span>
+            </Link>
+            {title}
+          </span>
           <div className="flex gap-4 mt-2">
             <span className="text-sm text-neutral-600">{category}</span>
 

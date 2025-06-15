@@ -17,7 +17,7 @@ const TasksPage: React.FC<TasksPageProps> = () => {
           Developed by interviewers from top tech companies."
         />
       </section>
-      <section className="pt-10 flex flex-col gap-5">
+      <section className="py-10 flex flex-col gap-5">
         <ProblemsList problems={problems} />
       </section>
     </div>
