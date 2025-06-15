@@ -1,18 +1,24 @@
-import React, { useState } from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import BasicModal from "./BasicModal";
 import { Button } from "../ui/button";
-import { AuthModalState, openAuthModal } from "@/lib/features/authModalSlice";
+import {
+  AuthModalState,
+  closeAuthModal,
+  openAuthModal,
+} from "@/lib/features/authModalSlice";
 import { useAppDispatch } from "@/lib/hooks";
 import { auth } from "@/firebase/firebase";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 type SignupProps = {};
 
 const Signup: React.FC<SignupProps> = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const [createUserWithEmailAndPassword, user, loading, error] =
+  const [createUserWithEmailAndPassword, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
 
   const handleClick = (type: AuthModalState["modalType"]) => {
@@ -30,6 +36,8 @@ const Signup: React.FC<SignupProps> = () => {
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!inputs.name || !inputs.email || !inputs.password)
+      alert("Please fill all fields");
     try {
       const newUser = await createUserWithEmailAndPassword(
         inputs.email,
@@ -37,11 +45,17 @@ const Signup: React.FC<SignupProps> = () => {
       );
 
       if (!newUser) return;
-      router.push("/");
-    } catch (err) {
-      if (err) alert(err.message);
+      router.push("/tasks");
+      dispatch(closeAuthModal());
+    } catch (err: unknown) {
+      if (err instanceof Error) alert(err.message);
+      alert(err);
     }
   };
+
+  useEffect(() => {
+    if (error) alert(error.message);
+  }, [error]);
 
   return (
     <BasicModal title="Create an account">
@@ -113,9 +127,15 @@ const Signup: React.FC<SignupProps> = () => {
             />
           </div>
           <div className="pt-2">
-            <Button className="w-full" type="submit">
-              Register
-            </Button>
+            {loading ? (
+              <Button className="w-full" type="submit" disabled>
+                Registering
+              </Button>
+            ) : (
+              <Button className="w-full" type="submit">
+                Register
+              </Button>
+            )}
           </div>
           <div className="pt-2 text-sm flex gap-2 items-center">
             <span>Already have an account?</span>

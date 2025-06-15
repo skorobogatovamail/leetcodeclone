@@ -1,5 +1,11 @@
 "use client";
 
+import { useSelector } from "react-redux";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { ArrowRight } from "lucide-react";
+import { useAuthState } from "react-firebase-hooks/auth";
+
 import Features from "@/components/Features";
 import Login from "@/components/Modals/Login";
 import ResetPassword from "@/components/Modals/ResetPassword";
@@ -8,11 +14,14 @@ import Subtitle from "@/components/Subtitle";
 import Title from "@/components/Title";
 import { Button } from "@/components/ui/button";
 import { RootState } from "@/lib/store";
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
-import { useSelector } from "react-redux";
+import { auth } from "@/firebase/firebase";
 
 export default function Home() {
+  const [user] = useAuthState(auth);
+  console.log("user", user);
+  const router = useRouter();
+  if (user) router.push("/tasks");
+
   const isOpened = useSelector((state: RootState) => state.authModal.isOpened);
   const modalType = useSelector(
     (state: RootState) => state.authModal.modalType

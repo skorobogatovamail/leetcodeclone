@@ -1,18 +1,59 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import BasicModal from "./BasicModal";
 import { Button } from "../ui/button";
 import { useAppDispatch } from "@/lib/hooks";
-import { AuthModalState, openAuthModal } from "@/lib/features/authModalSlice";
+import {
+  AuthModalState,
+  closeAuthModal,
+  openAuthModal,
+} from "@/lib/features/authModalSlice";
+import { useRouter } from "next/navigation";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { auth } from "@/firebase/firebase";
 
 const Login: React.FC = () => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
+  });
+  const [signInWithEmailAndPassword, loading, error] =
+    useSignInWithEmailAndPassword(auth);
 
   const handleClick = (type: AuthModalState["modalType"]) => {
     dispatch(openAuthModal(type));
   };
+
+  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const newUser = await signInWithEmailAndPassword(
+        inputs.email,
+        inputs.password
+      );
+      if (!newUser) return;
+      dispatch(closeAuthModal());
+      router.push("/tasks");
+    } catch (err: unknown) {
+      if (err instanceof Error) alert(err.message);
+      alert(err);
+    }
+  };
+
+  useEffect(() => {
+    if (error) alert(error);
+  }, [error]);
+
   return (
     <BasicModal title="Login to Leetcodeclone">
-      <form>
+      <form onSubmit={handleLogin}>
         <div className="flex flex-col gap-2">
           <div className="flex flex-col gap-1">
             <label
@@ -32,6 +73,8 @@ const Login: React.FC = () => {
                         outline-none bg-white p-2 text-sm text-gray-500 placeholder-gray-400
                         focus:border-blue-500"
               placeholder="email@example.com"
+              value={inputs.email}
+              onChange={handleChangeInput}
             />
           </div>
 
@@ -53,12 +96,20 @@ const Login: React.FC = () => {
                         outline-none bg-white p-2 text-sm text-gray-500 placeholder-gray-400
                         focus:border-blue-500"
               placeholder="*******"
+              value={inputs.password}
+              onChange={handleChangeInput}
             />
           </div>
           <div className="pt-2">
-            <Button className="w-full" type="submit">
-              Login
-            </Button>
+            {loading ? (
+              <Button className="w-full" type="submit" disabled>
+                Logging in
+              </Button>
+            ) : (
+              <Button className="w-full" type="submit">
+                Login
+              </Button>
+            )}
           </div>
           <div className="pt-2 text-sm flex gap-2 items-center">
             <span>Not registered yet?</span>

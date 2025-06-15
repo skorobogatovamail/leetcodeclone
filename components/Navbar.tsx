@@ -3,18 +3,15 @@
 import React from "react";
 import Logo from "./Logo";
 import { Button } from "./ui/button";
-import { useSelector } from "react-redux";
-import { RootState } from "@/lib/store";
 import { useAppDispatch } from "@/lib/hooks";
 import { AuthModalState, openAuthModal } from "@/lib/features/authModalSlice";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/firebase/firebase";
 
 type NavbarProps = {};
 
 const Navbar: React.FC<NavbarProps> = () => {
-  const user = useSelector((state: RootState) => state.user);
-  const isAuthenticated = useSelector(
-    (state: RootState) => state.user.isAuthenticated
-  );
+  const [user] = useAuthState(auth);
   const dispatch = useAppDispatch();
 
   const handleClick = (type: AuthModalState["modalType"]) => {
@@ -24,8 +21,8 @@ const Navbar: React.FC<NavbarProps> = () => {
   return (
     <div className="flex items-center justify-between px-8 py-5 border-b">
       <Logo />
-      {isAuthenticated ? (
-        <div>Welcome, {user?.user?.name}</div>
+      {user ? (
+        <div>{user?.email}</div>
       ) : (
         <div className="flex items-center justify-between gap-2">
           <Button variant="outline" onClick={() => handleClick("login")}>
