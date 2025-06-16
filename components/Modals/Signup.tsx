@@ -53,9 +53,6 @@ const Signup: React.FC<SignupProps> = () => {
     }
   };
 
-  useEffect(() => {
-    if (error) alert(error.message);
-  }, [error]);
 
   return (
     <BasicModal title="Create an account">
