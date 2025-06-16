@@ -8,6 +8,7 @@ import { AuthModalState, openAuthModal } from "@/lib/features/authModalSlice";
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import { auth } from "@/firebase/firebase";
 import { LogOut, UserCircle2 } from "lucide-react";
+import { toast } from "react-toastify";
 
 type NavbarProps = {};
 
@@ -26,7 +27,7 @@ const Navbar: React.FC<NavbarProps> = () => {
       const success = await signOut();
       if (!success) throw new Error("Logout failed")
     } catch (error) {
-      alert(error)
+      toast.error(error instanceof Error ? error.message : String(error), { position: 'bottom-right', autoClose: 3000 })
     }
 
   };

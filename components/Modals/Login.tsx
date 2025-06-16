@@ -12,6 +12,7 @@ import {
 import { useRouter } from "next/navigation";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "@/firebase/firebase";
+import { toast } from "react-toastify";
 
 const Login: React.FC = () => {
   const router = useRouter();
@@ -42,13 +43,16 @@ const Login: React.FC = () => {
       dispatch(closeAuthModal());
       router.push("/tasks");
     } catch (err: unknown) {
-      if (err instanceof Error) alert(err.message);
-      alert(err);
+      if (err instanceof Error) {
+        toast.error(err instanceof Error ? err.message : String(err), { position: 'bottom-right', autoClose: 3000 });
+      }
     }
   };
 
   useEffect(() => {
-    if (error) alert(error);
+    if (error) {
+      toast.error('Login Failed', { position: 'bottom-right', autoClose: 3000 });
+    }
   }, [error]);
 
   return (

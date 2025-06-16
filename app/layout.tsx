@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import StoreProvider from "@/lib/StoreProvider";
-import Container from "../components/Container";
-import Navbar from "../components/Navbar";
-import "./globals.css";
+import { ToastContainer } from "react-toastify";
 
+import StoreProvider from "@/lib/StoreProvider";
+import Container from "@/components/Container";
+import Navbar from "@/components/Navbar";
 import ModalShower from "@/components/Modals/ModalShower";
 import Loader from "@/components/Loader";
+
+import "./globals.css";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,6 +44,7 @@ export default function RootLayout({
               {children}
             </Container>
           </Loader>
+          <ToastContainer />
         </StoreProvider>
       </body>
     </html>

@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
-import BasicModal from "./BasicModal";
-import { Button } from "../ui/button";
+import { toast } from "react-toastify";
+
 import {
   AuthModalState,
   closeAuthModal,
@@ -11,11 +12,12 @@ import {
 } from "@/lib/features/authModalSlice";
 import { useAppDispatch } from "@/lib/hooks";
 import { auth } from "@/firebase/firebase";
-import { useRouter } from "next/navigation";
 
-type SignupProps = {};
+import BasicModal from "./BasicModal";
+import { Button } from "../ui/button";
 
-const Signup: React.FC<SignupProps> = () => {
+
+const Signup: React.FC = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [createUserWithEmailAndPassword, loading, error] =
@@ -37,7 +39,8 @@ const Signup: React.FC<SignupProps> = () => {
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!inputs.name || !inputs.email || !inputs.password)
-      alert("Please fill all fields");
+
+      toast.error("Please fill all fields", { position: 'bottom-right', autoClose: 3000 });
     try {
       const newUser = await createUserWithEmailAndPassword(
         inputs.email,
@@ -48,8 +51,7 @@ const Signup: React.FC<SignupProps> = () => {
       router.push("/tasks");
       dispatch(closeAuthModal());
     } catch (err: unknown) {
-      if (err instanceof Error) alert(err.message);
-      alert(err);
+      toast.error(err instanceof Error ? err.message : String(err), { position: 'bottom-right', autoClose: 3000 })
     }
   };
 
