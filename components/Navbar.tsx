@@ -7,11 +7,13 @@ import { useAppDispatch } from "@/lib/hooks";
 import { AuthModalState, openAuthModal } from "@/lib/features/authModalSlice";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/firebase/firebase";
+import { UserCircle2 } from "lucide-react";
 
 type NavbarProps = {};
 
 const Navbar: React.FC<NavbarProps> = () => {
   const [user] = useAuthState(auth);
+
   const dispatch = useAppDispatch();
 
   const handleClick = (type: AuthModalState["modalType"]) => {
@@ -19,10 +21,16 @@ const Navbar: React.FC<NavbarProps> = () => {
   };
 
   return (
-    <div className="flex items-center justify-between px-8 py-5 border-b">
+    <div className="flex items-center justify-between px-15 sm:px-20 py-5 border-b">
       <Logo />
+
       {user ? (
-        <div>{user?.email}</div>
+        <div className="relative group">
+          <UserCircle2 className="h-8 w-8" />
+          <p className="absolute scale-0 group-hover:scale-100 bg-neutral-200 top-10 -translate-x-1/2 left-1/2 p-2 rounded-lg text-orange-500 transition-all duration-200 ease-out text-sm">
+            {user?.email}
+          </p>
+        </div>
       ) : (
         <div className="flex items-center justify-between gap-2">
           <Button variant="outline" onClick={() => handleClick("login")}>
