@@ -1,17 +1,39 @@
-import React from 'react';
+'use client'
+
+import React, { useEffect } from 'react';
+import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
+
+import { auth } from '@/firebase/firebase';
+
 import BasicModal from './BasicModal';
 import { Button } from '../ui/button';
-import Link from 'next/link';
 import Subtitle from '../Subtitle';
-type ResetPasswordProps = {
 
-};
 
-const ResetPassword: React.FC<ResetPasswordProps> = () => {
+const ResetPassword: React.FC = () => {
+    const [email, setEmail] = React.useState('');
+    const [sendPasswordResetEmail, sending, error] = useSendPasswordResetEmail(
+        auth
+    );
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        try {
+            const success = await sendPasswordResetEmail(email);
+            if (success) alert("Reset password email was sent")
+        } catch (error) {
+            alert(error)
+        }
+    }
+
+    useEffect(() => {
+        if (error) alert(error.message)
+    }, [error])
+
     return (
         <BasicModal title='Reset Password'>
             <Subtitle text='Enter your email to reset your password' />
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className='flex flex-col gap-2'>
                     <div className='flex flex-col gap-1'>
                         <label htmlFor='email'
@@ -28,6 +50,8 @@ const ResetPassword: React.FC<ResetPasswordProps> = () => {
                         outline-none bg-white p-2 text-sm text-gray-500 placeholder-gray-400
                         focus:border-blue-500'
                             placeholder='email@example.com'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
                     <div className='pt-2'>
