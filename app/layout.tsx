@@ -4,7 +4,6 @@ import { ToastContainer } from "react-toastify";
 
 import StoreProvider from "@/lib/StoreProvider";
 import Container from "@/components/Container";
-import Navbar from "@/components/Navbar";
 import ModalShower from "@/components/Modals/ModalShower";
 import Loader from "@/components/Loader";
 
@@ -39,7 +38,6 @@ export default function RootLayout({
         <StoreProvider>
           <Loader >
             <Container>
-              <Navbar />
               <ModalShower />
               {children}
             </Container>

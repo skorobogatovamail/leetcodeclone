@@ -1,18 +1,25 @@
 "use client";
 
 import React from "react";
-import Logo from "./Logo";
-import { Button } from "./ui/button";
-import { useAppDispatch } from "@/lib/hooks";
-import { AuthModalState, openAuthModal } from "@/lib/features/authModalSlice";
-import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
-import { auth } from "@/firebase/firebase";
-import { LogOut, UserCircle2 } from "lucide-react";
 import { toast } from "react-toastify";
+import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
+import { ChevronLeft, ChevronRight, List, LogOut, UserCircle2 } from "lucide-react";
 
-type NavbarProps = {};
+import { cn } from "@/lib/utils";
+import { useAppDispatch } from "@/lib/hooks";
+import { auth } from "@/firebase/firebase";
+import { AuthModalState, openAuthModal } from "@/lib/features/authModalSlice";
 
-const Navbar: React.FC<NavbarProps> = () => {
+import { Button } from "./ui/button";
+import Timer from "./Timer";
+import Logo from "./Logo";
+
+
+type NavbarProps = {
+  problemPage?: boolean
+};
+
+const Navbar: React.FC<NavbarProps> = ({ problemPage }) => {
   const [user] = useAuthState(auth);
   const [signOut, loading, error] = useSignOut(auth);
 
@@ -33,31 +40,50 @@ const Navbar: React.FC<NavbarProps> = () => {
   };
 
   return (
-    <div className="flex items-center justify-between px-15 sm:px-20 py-5 border-b">
+    <div className={cn("flex items-center justify-between border-b py-5", problemPage ? 'px-10' : 'px-15 sm:px-20')}>
       <Logo />
-
-      {user ? (
-        <div className="flex items-center justify-between gap-2">
-          <div className="relative group">
-            <UserCircle2 className="h-8 w-8" />
-            <p className="absolute scale-0 group-hover:scale-100 bg-neutral-200 top-10 -translate-x-1/2 left-1/2 p-2 rounded-lg text-orange-500 transition-all duration-200 ease-out text-sm">
-              {user?.email}
-            </p>
+      {problemPage && (
+        <div className="flex items-center justify-center gap-4 ">
+          <div className="flex items-center justify-center rounded h-8 w-8 cursor-pointer text-neutral-500 hover:bg-neutral-200">
+            <ChevronLeft />
           </div>
-          <Button variant="outline" onClick={handleLogout}>
-            <LogOut />
-          </Button>
+          <div className="flex items-center justify-center gap-2 cursor-pointer">
+            <List className="text-neutral-500  h-5 w-5 " />
+            <span className="hover:text-neutral-500">Problem list</span>
+          </div>
+          <div className="flex items-center justify-center rounded h-8 w-8 cursor-pointer text-neutral-500 hover:bg-neutral-200">
+            <ChevronRight />
+          </div>
         </div>
+      )}
 
-      ) : (
-        <div className="flex items-center justify-between gap-2">
-          <Button variant="outline" onClick={() => handleClick("login")}>
-            Login
-          </Button>
-          <Button onClick={() => handleClick("register")}>Sign Up</Button>
-        </div>
-      )
-      }
+      <div className="flex items-center justify-between gap-2">
+        {problemPage && (
+          <Timer />
+        )}
+
+        {user ? (
+          <>
+            <div className="relative group cursor-pointer">
+              <UserCircle2 className="hover:bg-neutral-200 p-1 rounded h-8 w-8" />
+              <p className="absolute scale-0 group-hover:scale-100 bg-neutral-200 top-10 -translate-x-1/2 left-1/2 p-2 rounded-lg text-orange-500 transition-all duration-200 ease-out text-sm">
+                {user?.email}
+              </p>
+            </div>
+            <Button variant="outline" onClick={handleLogout}>
+              <LogOut />
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button variant="outline" onClick={() => handleClick("login")}>
+              Login
+            </Button>
+            <Button onClick={() => handleClick("register")}>Sign Up</Button>
+          </>
+        )}
+      </div>
+
     </div >
   );
 };
