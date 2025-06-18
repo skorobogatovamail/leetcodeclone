@@ -3,7 +3,13 @@
 import React from "react";
 import { toast } from "react-toastify";
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
-import { ChevronLeft, ChevronRight, List, LogOut, UserCircle2 } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  List,
+  LogOut,
+  UserCircle2,
+} from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { useAppDispatch } from "@/lib/hooks";
@@ -14,14 +20,13 @@ import { Button } from "./ui/button";
 import Timer from "./Timer";
 import Logo from "./Logo";
 
-
 type NavbarProps = {
-  problemPage?: boolean
+  problemPage?: boolean;
 };
 
 const Navbar: React.FC<NavbarProps> = ({ problemPage }) => {
   const [user] = useAuthState(auth);
-  const [signOut, loading, error] = useSignOut(auth);
+  const [signOut] = useSignOut(auth);
 
   const dispatch = useAppDispatch();
 
@@ -32,15 +37,22 @@ const Navbar: React.FC<NavbarProps> = ({ problemPage }) => {
   const handleLogout = async () => {
     try {
       const success = await signOut();
-      if (!success) throw new Error("Logout failed")
+      if (!success) throw new Error("Logout failed");
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : String(error), { position: 'bottom-right', autoClose: 3000 })
+      toast.error(error instanceof Error ? error.message : String(error), {
+        position: "bottom-right",
+        autoClose: 3000,
+      });
     }
-
   };
 
   return (
-    <div className={cn("flex items-center justify-between border-b py-5", problemPage ? 'px-10' : 'px-15 sm:px-20')}>
+    <div
+      className={cn(
+        "flex items-center justify-between border-b py-5",
+        problemPage ? "px-10" : "px-15 sm:px-20"
+      )}
+    >
       <Logo />
       {problemPage && (
         <div className="flex items-center justify-center gap-4 ">
@@ -58,9 +70,7 @@ const Navbar: React.FC<NavbarProps> = ({ problemPage }) => {
       )}
 
       <div className="flex items-center justify-between gap-2">
-        {problemPage && (
-          <Timer />
-        )}
+        {problemPage && <Timer />}
 
         {user ? (
           <>
@@ -83,8 +93,7 @@ const Navbar: React.FC<NavbarProps> = ({ problemPage }) => {
           </>
         )}
       </div>
-
-    </div >
+    </div>
   );
 };
 export default Navbar;
