@@ -5,6 +5,7 @@ export type Problem = {
   category: string;
   order: number;
   videoId?: string;
+  description?: string;
 };
 
 export const problems: Problem[] = [
@@ -15,6 +16,8 @@ export const problems: Problem[] = [
     category: "Array",
     order: 1,
     videoId: "8-k1C6ehKuw",
+    description:
+      "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice. You can return the answer in any order.",
   },
   {
     id: "reverse-linked-list",

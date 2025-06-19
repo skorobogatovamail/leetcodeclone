@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Split from "react-split";
 import ProblemDescription from "./ProblemDescription";
@@ -7,13 +9,9 @@ type WorkspaceProps = {};
 
 const Workspace: React.FC<WorkspaceProps> = () => {
   return (
-    <Split>
-      <div>
-        <ProblemDescription />
-      </div>
-      <div>
-        <CodeEditor />
-      </div>
+    <Split className="split h-full">
+      <ProblemDescription />
+      <CodeEditor />
     </Split>
   );
 };
