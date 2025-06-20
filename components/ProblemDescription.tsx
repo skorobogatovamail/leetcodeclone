@@ -16,7 +16,7 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = () => {
 
       <div className="pt-4 h-full rounded-r-md flex flex-col gap-3">
         <Title text="Two Sum" as="h3" />
-        <div className="flex gap-2">
+        <div className="flex gap-2 items-center">
           <div>Easy</div>
           <Check className="h-4 w-4" />
           <ThumbsUp className="h-4 w-4" />
@@ -38,38 +38,35 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = () => {
           <p>You can return the answer in any order.</p>
         </div>
 
-        <div className="mt-4">
-          {/* Example 1 */}
+        <div className="mt-4 text-sm">
           <div>
-            <p className="font-medium">Example 1: </p>
+            <p>Example 1: </p>
             <div className="example-card">
-              <pre>
-                <strong className="text-white">Input: </strong> nums =
-                [2,7,11,15], target = 9 <br />
+              <pre className="bg-neutral-200 ">
+                <strong>Input: </strong> nums = [2,7,11,15], target = 9 <br />
                 <strong>Output:</strong> [0,1] <br />
-                <strong>Explanation:</strong>Because nums[0] + nums[1] == 9, we
+                <strong>Explanation:</strong> Because nums[0] + nums[1] == 9, we
                 return [0, 1].
               </pre>
             </div>
           </div>
 
-          {/* Example 2 */}
           <div>
-            <p className="font-medium  ">Example 2: </p>
+            <p>Example 2: </p>
             <div className="example-card">
-              <pre>
+              <pre className="bg-neutral-200 ">
                 <strong>Input: </strong> nums = [3,2,4], target = 6 <br />
                 <strong>Output:</strong> [1,2] <br />
-                <strong>Explanation:</strong>Because nums[1] + nums[2] == 6, we
+                <strong>Explanation:</strong> Because nums[1] + nums[2] == 6, we
                 return [1, 2].
               </pre>
             </div>
           </div>
-          {/* Example 3 */}
+
           <div>
-            <p className="font-medium ">Example 3: </p>
+            <p>Example 3: </p>
             <div className="example-card">
-              <pre>
+              <pre className="bg-neutral-200 ">
                 <strong>Input: </strong> nums = [3,3], target = 6
                 <br />
                 <strong>Output:</strong> [0,1] <br />
