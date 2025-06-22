@@ -1,5 +1,5 @@
 import React from "react";
-import Title from "./Title";
+import Title from "../Title";
 import { Check, ScrollText, Star, ThumbsUp } from "lucide-react";
 
 type ProblemDescriptionProps = {};

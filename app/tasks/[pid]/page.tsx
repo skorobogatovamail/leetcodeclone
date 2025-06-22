@@ -1,5 +1,5 @@
 import Navbar from "@/components/Navbar";
-import Workspace from "@/components/Workspace";
+import Workspace from "@/components/Workspace/Workspace";
 import React from "react";
 
 const ProblemPage: React.FC = () => {
