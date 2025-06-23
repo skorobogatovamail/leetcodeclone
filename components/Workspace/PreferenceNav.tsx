@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 const PreferenceNav: React.FC = () => {
   const [active, setActive] = useState<"code" | "testCases">("code");
   return (
-    <div className="flex gap-2 items-center justify-between">
+    <div className="flex gap-2 items-center justify-between px-6 ">
       <div className="flex gap-2 items-center">
         <Button
           variant="ghost"

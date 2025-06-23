@@ -1,11 +1,18 @@
+"use client";
+
 import React from "react";
-import PreferenceNav from "./PreferenceNav";
+import CodeMirror from "@uiw/react-codemirror";
+import { vscodeDark } from "@uiw/codemirror-theme-vscode";
+import { javascript } from "@codemirror/lang-javascript";
 
 const CodeEditor: React.FC = () => {
   return (
-    <div className="px-4 sm:px-10 rounded h-full border-2 py-4">
-      <PreferenceNav />
-    </div>
+    <CodeMirror
+      value="const a = 1"
+      theme={vscodeDark}
+      extensions={[javascript()]}
+      style={{ fontSize: 16 }}
+    />
   );
 };
 export default CodeEditor;

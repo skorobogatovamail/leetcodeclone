@@ -4,7 +4,7 @@ import { Check, ScrollText, Star, ThumbsUp } from "lucide-react";
 
 const ProblemDescription: React.FC = () => {
   return (
-    <div className="px-2 sm:px-5 border-2 py-6">
+    <div className="mt-2 py-4 px-6  border-1 rounded-lg bg-white">
       <div className="flex items-center">
         <div className="flex gap-2 items-center">
           <ScrollText className="h-4 w-4" />

@@ -3,14 +3,16 @@
 import React from "react";
 import Split from "react-split";
 import ProblemDescription from "./ProblemDescription";
-import CodeEditor from "./CodeEditor";
+import Sandbox from "./Sandbox";
 
 const Workspace: React.FC = () => {
   return (
-    <Split className="split h-full">
-      <ProblemDescription />
-      <CodeEditor />
-    </Split>
+    <div className=" bg-neutral-100">
+      <Split className="split h-full">
+        <ProblemDescription />
+        <Sandbox />
+      </Split>
+    </div>
   );
 };
 export default Workspace;
