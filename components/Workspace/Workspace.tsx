@@ -5,9 +5,7 @@ import Split from "react-split";
 import ProblemDescription from "./ProblemDescription";
 import CodeEditor from "./CodeEditor";
 
-type WorkspaceProps = {};
-
-const Workspace: React.FC<WorkspaceProps> = () => {
+const Workspace: React.FC = () => {
   return (
     <Split className="split h-full">
       <ProblemDescription />

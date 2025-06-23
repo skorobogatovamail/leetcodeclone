@@ -121,6 +121,12 @@
   }
 }
 
+@layer components {
+  .tip {
+    @apply absolute scale-0 group-hover:scale-100 bg-neutral-200 text-orange-500 top-10 left-1/2 -translate-x-1/2 transition-all duration-200 ease-out text-sm p-2 rounded-lg;
+  }
+}
+
 .split {
   display: flex;
   flex-direction: row;

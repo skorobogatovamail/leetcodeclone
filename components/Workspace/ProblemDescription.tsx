@@ -2,15 +2,13 @@ import React from "react";
 import Title from "../Title";
 import { Check, ScrollText, Star, ThumbsUp } from "lucide-react";
 
-type ProblemDescriptionProps = {};
-
-const ProblemDescription: React.FC<ProblemDescriptionProps> = () => {
+const ProblemDescription: React.FC = () => {
   return (
     <div className="px-2 sm:px-5 border-2 py-6">
       <div className="flex items-center">
         <div className="flex gap-2 items-center">
           <ScrollText className="h-4 w-4" />
-          Description
+          <span className="text-sm">Description</span>
         </div>
       </div>
 

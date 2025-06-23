@@ -76,9 +76,7 @@ const Navbar: React.FC<NavbarProps> = ({ problemPage }) => {
           <>
             <div className="relative group cursor-pointer">
               <UserCircle2 className="hover:bg-neutral-200 p-1 rounded h-8 w-8" />
-              <p className="absolute scale-0 group-hover:scale-100 bg-neutral-200 top-10 -translate-x-1/2 left-1/2 p-2 rounded-lg text-orange-500 transition-all duration-200 ease-out text-sm">
-                {user?.email}
-              </p>
+              <p className="tip">{user?.email}</p>
             </div>
             <Button variant="outline" onClick={handleLogout}>
               <LogOut />
