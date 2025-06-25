@@ -11,16 +11,14 @@ const PreferenceNav: React.FC = () => {
     <div className="flex gap-2 items-center justify-between px-6 ">
       <div className="flex gap-2 items-center">
         <Button
-          variant="ghost"
-          className={cn(active === "testCases" && "text-neutral-500")}
+          variant={active === "testCases" ? "ghost" : "secondary"}
           onClick={() => setActive("code")}
         >
           <Code className="h-4 w-4" />
           <span>Code</span>
         </Button>
         <Button
-          variant="ghost"
-          className={cn(active === "code" && "text-neutral-500")}
+          variant={active === "code" ? "ghost" : "secondary"}
           onClick={() => setActive("testCases")}
         >
           <TestTubeDiagonal className="h-4 w-4" />

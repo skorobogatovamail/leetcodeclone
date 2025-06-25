@@ -7,7 +7,7 @@ import Sandbox from "./Sandbox";
 
 const Workspace: React.FC = () => {
   return (
-    <div className=" bg-neutral-100">
+    <div>
       <Split className="split h-full">
         <ProblemDescription />
         <Sandbox />
