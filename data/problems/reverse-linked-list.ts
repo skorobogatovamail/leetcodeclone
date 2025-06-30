@@ -1,6 +1,6 @@
 import assert from "assert";
 import { Problem } from "../types/problem";
-import example from "./images/reverseLL.jpg";
+import example from "../images/reverseLL.jpg";
 
 class LinkedList {
   value: number;
@@ -65,7 +65,7 @@ function reverseLinkedList(head) {
 }
 `;
 
-export const reversedLinkedList: Problem = {
+export const reverseLinkedList: Problem = {
   id: "reversed-linked-list",
   title: "2. Reversed Linked List",
   problemStatement: `
@@ -94,7 +94,7 @@ export const reversedLinkedList: Problem = {
   constraints: `<li class='mt-2'>The number of nodes in the list is the range <code>[0, 5000]</code>.</li>
   <li class='mt-2'><code>-5000 <= Node.val <= 5000</code></li>`,
   starterCode: starterCodeReverseLinkedListJS,
-  handlerFunction: reverseLinkedListHandler,
+  handlerFunction: reverseLinkedListHandler.toString(),
   starterFunctionName: "function reverseLinkedList(",
   order: 2,
 };

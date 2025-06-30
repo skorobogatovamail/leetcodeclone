@@ -1,7 +1,7 @@
 import assert from "assert";
 import { Problem } from "../types/problem";
-import example1 from "./images/search-a-2d-1.jpg";
-import example2 from "./images/search-a-2d-2.jpg";
+import example1 from "../images/search-a-2d-1.jpg";
+import example2 from "../images/search-a-2d-2.jpg";
 
 export const search2DMatrixHandler = (
   fn: (matrix: number[][], target: number) => boolean
@@ -84,7 +84,7 @@ export const search2DMatrix: Problem = {
   <li class='mt-2'><code>-10<sup>4</sup> <= matrix[i][j], target <= 10<sup>4</sup></code></li>
   `,
   starterCode: starterCodeSearch2DMatrixJS,
-  handlerFunction: search2DMatrixHandler,
+  handlerFunction: search2DMatrixHandler.toString(),
   starterFunctionName: "function searchMatrix",
   order: 5,
 };

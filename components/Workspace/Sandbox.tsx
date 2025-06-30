@@ -6,8 +6,14 @@ import PreferenceNav from "./PreferenceNav";
 import CodeEditor from "./CodeEditor";
 import TestCases from "./TestCases";
 import EditorFooter from "./EditorFooter";
+import { Problem } from "@/data/types/problem";
 
-const Sandbox: React.FC = () => {
+interface SandboxProps {
+  problem: Problem
+}
+
+
+const Sandbox: React.FC<SandboxProps> = ({ problem }) => {
   return (
     <Split
       className="relative"

@@ -38,13 +38,13 @@ export const twoSum: Problem = {
   title: "1. Two Sum",
   problemStatement: `<div class=" text-sm flex flex-col gap-3">
           <p>
-            Given an array of integers <code>nums</code> and an integer{" "}
-            <code>target</code>, return{" "}
-            <em>indices of the two numbers such that they add up to</em>{" "}
+            Given an array of integers <code>nums</code> and an integer
+            <code>target</code>, return
+            <em>indices of the two numbers such that they add up to</em>
             <code>target</code>.
           </p>
           <p>
-            You may assume that each input would have{" "}
+            You may assume that each input would have
             <strong>exactly one solution</strong>, and you may not use thesame
             element twice.
           </p>
@@ -79,7 +79,7 @@ export const twoSum: Problem = {
 <li class='mt-2 text-sm'>
 <strong>Only one valid answer exists.</strong>
 </li>`,
-  handlerFunction: handlerTwoSum,
+  handlerFunction: handlerTwoSum.toString(),
   starterCode: starterCodeTwoSum,
   order: 1,
   starterFunctionName: "function twoSum(",

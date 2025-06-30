@@ -1,7 +1,7 @@
 import assert from "assert";
 import { Problem } from "../types/problem";
 
-export const jumpGameHandler = (fn: (arr: number[]) => boolean) => {
+const jumpGameHandler = (fn: (arr: number[]) => boolean) => {
   try {
     const tests = [
       [2, 3, 1, 1, 4],
@@ -56,7 +56,7 @@ export const jumpGame: Problem = {
   constraints: `<li class='mt-2'><code>1 <= nums.length <= 10^4</code></li>
     <li class='mt-2'><code>0 <= nums[i] <= 10^5</code></li>`,
   starterCode: starterCodeJumpGameJS,
-  handlerFunction: jumpGameHandler,
+  handlerFunction: jumpGameHandler.toString(),
   starterFunctionName: "function canJump(",
   order: 3,
 };

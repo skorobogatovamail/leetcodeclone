@@ -1,15 +1,32 @@
 import Navbar from "@/components/Navbar";
 import Workspace from "@/components/Workspace/Workspace";
+import { problems } from "@/data/problems/index";
+import { Problem } from "@/data/types/problem";
 import React from "react";
 
-const ProblemPage: React.FC = () => {
+interface ProblemPageProps {
+  params: { pid: string }
+}
+
+const ProblemPage: React.FC<ProblemPageProps> = async ({ params }) => {
+  const { pid } = await params;
+  const problem = problems[pid];
   return (
     <>
       <Navbar problemPage />
       <div className="bg-gradient-to-b from-slate-50 to-white h-screen m-2">
-        <Workspace />
+        <Workspace problem={problem} />
       </div>
     </>
   );
 };
 export default ProblemPage;
+
+
+export const generateStaticParams = async () => {
+  console.log(problems['two-sum'])
+  return Object.keys(problems).map(path => ({
+    pid: path
+  }))
+
+}

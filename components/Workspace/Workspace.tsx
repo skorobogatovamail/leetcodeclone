@@ -4,13 +4,18 @@ import React from "react";
 import Split from "react-split";
 import ProblemDescription from "./ProblemDescription";
 import Sandbox from "./Sandbox";
+import { Problem } from "@/data/types/problem";
 
-const Workspace: React.FC = () => {
+interface WorkspaceProps {
+  problem: Problem
+}
+
+const Workspace: React.FC<WorkspaceProps> = ({ problem }) => {
   return (
     <div>
       <Split className="split h-full">
-        <ProblemDescription />
-        <Sandbox />
+        <ProblemDescription problem={problem} />
+        <Sandbox problem={problem} />
       </Split>
     </div>
   );
