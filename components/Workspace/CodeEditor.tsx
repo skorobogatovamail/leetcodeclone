@@ -5,19 +5,19 @@ import CodeMirror from "@uiw/react-codemirror";
 import { vscodeLight } from "@uiw/codemirror-theme-vscode";
 import { javascript } from "@codemirror/lang-javascript";
 
-const CodeEditor: React.FC = () => {
-  const boilerplate = `
-  function twoSum(nums, target) => {
-  // your code here
-  };
-  `;
+interface CodeEditorProps {
+  code: string
+}
+
+const CodeEditor: React.FC<CodeEditorProps> = ({ code }) => {
+  const boilerplate = code;
   return (
     <div className="mt-2">
       <CodeMirror
         value={boilerplate}
         theme={vscodeLight}
         extensions={[javascript()]}
-        style={{ fontSize: 16 }}
+        style={{ fontSize: 14 }}
       />
     </div>
   );

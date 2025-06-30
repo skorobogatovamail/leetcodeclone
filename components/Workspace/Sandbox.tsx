@@ -23,10 +23,10 @@ const Sandbox: React.FC<SandboxProps> = ({ problem }) => {
     >
       <div className="py-4 border-1 rounded-lg bg-white overflow-auto">
         <PreferenceNav />
-        <CodeEditor />
+        <CodeEditor code={problem.starterCode} />
       </div>
       <div className=" py-4 border-1 rounded-lg bg-white overflow-auto">
-        <TestCases />
+        <TestCases testCases={problem.examples} />
       </div>
       <EditorFooter />
     </Split>

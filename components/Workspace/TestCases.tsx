@@ -1,7 +1,11 @@
 import React from "react";
 import { Button } from "../ui/button";
+import { Problem } from "@/data/types/problem";
 
-const TestCases: React.FC = () => {
+interface TestCasesProps {
+  testCases: Problem['examples']
+}
+const TestCases: React.FC<TestCasesProps> = ({ testCases }) => {
   return (
     <div className="px-6">
       <div>
@@ -12,20 +16,25 @@ const TestCases: React.FC = () => {
       </div>
 
       <div className="flex mt-3 gap-2">
-        <Button variant="secondary">Case 1</Button>
-        <Button variant="secondary">Case 2</Button>
-        <Button variant="secondary">Case 3</Button>
+        {testCases.map(el => (
+          <Button key={el.id} variant="secondary">Case {el.id + 1}</Button>
+        ))}
       </div>
 
       <div className=" my-4">
-        <p className="text-sm font-medium mt-4 ">Input:</p>
-        <div className="cursor-text rounded-lg border px-3 py-[10px] bg-dark-fill-3 border-transparent mt-2 text-sm bg-neutral-200">
-          nums: [2,7,11,15], target: 9
-        </div>
-        <p className="text-sm font-medium mt-4 ">Output:</p>
-        <div className=" cursor-text rounded-lg border px-3 py-[10px] bg-dark-fill-3 border-transparent  mt-2 text-sm  bg-neutral-200">
-          [0, 1]
-        </div>
+        {testCases.map(el => (
+          <React.Fragment key={el.id}>
+            <p className="text-sm font-medium mt-4 ">Input:</p>
+            <div className="cursor-text rounded-lg border px-3 py-[10px] bg-dark-fill-3 border-transparent mt-2 text-sm bg-neutral-200">
+              {el.inputText}
+            </div>
+            <p className="text-sm font-medium mt-4 ">Output:</p>
+            <div className=" cursor-text rounded-lg border px-3 py-[10px] bg-dark-fill-3 border-transparent  mt-2 text-sm  bg-neutral-200">
+              {el.outputText}
+            </div>
+          </React.Fragment>
+
+        ))}
       </div>
     </div>
   );

@@ -49,7 +49,6 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
           ))}
         </div>
 
-        {/* Constraints */}
         <div className='my-8 pb-4'>
           <div className='text-sm font-medium'>Constraints:</div>
           <ul className='ml-5 list-disc '>
