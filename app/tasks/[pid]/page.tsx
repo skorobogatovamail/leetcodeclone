@@ -10,7 +10,9 @@ interface ProblemPageProps {
 
 const ProblemPage: React.FC<ProblemPageProps> = async ({ params }) => {
   const { pid } = await params;
+  console.log(pid)
   const problem = problems[pid];
+  console.log(problem)
   return (
     <>
       <Navbar problemPage />
@@ -24,7 +26,6 @@ export default ProblemPage;
 
 
 export const generateStaticParams = async () => {
-  console.log(problems['two-sum'])
   return Object.keys(problems).map(path => ({
     pid: path
   }))

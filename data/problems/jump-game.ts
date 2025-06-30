@@ -16,7 +16,6 @@ const jumpGameHandler = (fn: (arr: number[]) => boolean) => {
     }
     return true;
   } catch (error) {
-    console.log("Error from jumpGameHandler: ", error);
     throw error;
   }
 };

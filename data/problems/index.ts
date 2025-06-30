@@ -11,8 +11,8 @@ interface ProblemMap {
 
 export const problems: ProblemMap = {
     'two-sum': twoSum,
-    'reverse-Linked-List': reverseLinkedList,
+    'reverse-linked-list': reverseLinkedList,
     'jump-game': jumpGame,
-    'search-2D-Matrix': search2DMatrix,
+    'search-a-2d-matrix': search2DMatrix,
     'valid-parentheses': validParentheses,
 }

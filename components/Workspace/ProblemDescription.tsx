@@ -32,6 +32,7 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
           {problem.examples.map((el) => (
             <div key={el.id}>
               <p>Example {el.id}: </p>
+              {el.img && <img src={el.img} alt='task image' className="mt-3"></img>}
               <div className="example-card">
                 <pre className="bg-neutral-200 ">
                   <strong>Input: </strong> {el.inputText} <br />
@@ -46,6 +47,14 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Constraints */}
+        <div className='my-8 pb-4'>
+          <div className='text-sm font-medium'>Constraints:</div>
+          <ul className='ml-5 list-disc '>
+            <div dangerouslySetInnerHTML={{ __html: problem.constraints }} />
+          </ul>
         </div>
       </div>
     </div >

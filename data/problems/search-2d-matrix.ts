@@ -32,7 +32,6 @@ export const search2DMatrixHandler = (
     }
     return true;
   } catch (error) {
-    console.log("Error from searchA2DMatrixHandler: ", error);
     throw error;
   }
 };
