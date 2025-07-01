@@ -11,10 +11,11 @@ import {
   openAuthModal,
 } from "@/lib/features/authModalSlice";
 import { useAppDispatch } from "@/lib/hooks";
-import { auth } from "@/firebase/firebase";
+import { auth, firestore } from "@/firebase/firebase";
 
 import BasicModal from "./BasicModal";
 import { Button } from "../ui/button";
+import { collection, doc, setDoc } from "firebase/firestore";
 
 
 const Signup: React.FC = () => {
@@ -38,20 +39,40 @@ const Signup: React.FC = () => {
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!inputs.name || !inputs.email || !inputs.password)
-
-      toast.error("Please fill all fields", { position: 'bottom-right', autoClose: 3000 });
+    if (!inputs.name || !inputs.email || !inputs.password) {
+      toast.error("Please fill all fields", { position: 'bottom-right', autoClose: 3000 })
+    };
     try {
+      toast.loading("Creating your account", { position: "bottom-right", autoClose: 3000, toastId: 'registeringToast' });
+
       const newUser = await createUserWithEmailAndPassword(
         inputs.email,
         inputs.password
       );
 
       if (!newUser) return;
+
+      const userData = {
+        name: inputs.name,
+        uid: newUser.user.uid,
+        email: newUser.user.email,
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+        likedProblems: [],
+        dislikedProblems: [],
+        solvedProblems: [],
+        starredProblems: [],
+      };
+
+      const usersCollection = collection(firestore, "users");
+      await setDoc(doc(usersCollection, newUser.user.uid), userData)
+
       router.push("/tasks");
       dispatch(closeAuthModal());
     } catch (err: unknown) {
       toast.error(err instanceof Error ? err.message : String(err), { position: 'bottom-right', autoClose: 3000 })
+    } finally {
+      toast.dismiss('registeringToast')
     }
   };
 

@@ -70,7 +70,7 @@ const Navbar: React.FC<NavbarProps> = ({ problemPage }) => {
       )}
 
       <div className="flex items-center justify-between gap-2">
-        {problemPage && <Timer />}
+        {user && problemPage && <Timer />}
 
         {user ? (
           <>
