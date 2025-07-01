@@ -25,7 +25,7 @@ const TestCases: React.FC<TestCasesProps> = ({ testCases }) => {
             key={el.id}
             variant={activeTestCase === idx ? "secondary" : "ghost"}
             onClick={() => setActiveTestCase(idx)}>
-            Case {el.id + 1}
+            Case {el.id}
           </Button>
         ))}
       </div>

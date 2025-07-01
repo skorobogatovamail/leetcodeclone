@@ -2,12 +2,7 @@ import { GraduationCap } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 
-type LogoProps = {
-
-};
-
-const Logo: React.FC<LogoProps> = () => {
-
+const Logo: React.FC = () => {
     return (
         <div className=''>
             <Link href='/' className='text-xl font-bold flex justify-between gap-2 items-center'>

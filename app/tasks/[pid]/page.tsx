@@ -1,7 +1,8 @@
+import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Workspace from "@/components/Workspace/Workspace";
 import { problems } from "@/data/problems/index";
-import { Problem } from "@/data/types/problem";
+
 import React from "react";
 
 interface ProblemPageProps {
@@ -10,9 +11,10 @@ interface ProblemPageProps {
 
 const ProblemPage: React.FC<ProblemPageProps> = async ({ params }) => {
   const { pid } = await params;
-  console.log(pid)
   const problem = problems[pid];
-  console.log(problem)
+  if (!problem) {
+    return notFound()
+  }
   return (
     <>
       <Navbar problemPage />

@@ -1,13 +1,24 @@
+'use client'
+
+import React from "react";
+
 import Navbar from "@/components/Navbar";
 import ProblemsList from "@/components/ProblemsList";
 import Subtitle from "@/components/Subtitle";
 import Title from "@/components/Title";
-import { problems } from "@/data/problems";
-import React from "react";
+import { useFetchProblems } from "@/hooks/useFetchProblems";
+
 
 type TasksPageProps = {};
 
 const TasksPage: React.FC<TasksPageProps> = () => {
+
+  const { problems, loading, error } = useFetchProblems()
+
+  if (error) {
+    return <div>Error: {error}</div>
+  }
+
   return (
     <>
       <Navbar />
@@ -21,7 +32,7 @@ const TasksPage: React.FC<TasksPageProps> = () => {
           />
         </section>
         <section className="py-10 flex flex-col gap-5">
-          <ProblemsList problems={problems} />
+          <ProblemsList loading={loading} problems={problems} />
         </section>
       </div>
     </>
