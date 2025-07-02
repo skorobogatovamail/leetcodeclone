@@ -9,7 +9,6 @@ type ProblemsListProps = {
 };
 
 const ProblemsList: React.FC<ProblemsListProps> = ({ problems, loading }) => {
-  console.log('loading', loading)
   return (
     <ul className="flex flex-col rounded-lg border border-neutral-200 divide-y divide-neutral-200">
       {problems.map((el: ProblemType) => (

@@ -17,7 +17,7 @@ import { useRegister } from "@/hooks/useRegister";
 
 
 const Signup: React.FC = () => {
-  const { register, loading } = useRegister()
+  const { register, loading, error } = useRegister()
   const dispatch = useAppDispatch();
   const [inputs, setInputs] = useState({
     name: "",
@@ -41,7 +41,7 @@ const Signup: React.FC = () => {
       toast.error("Please fill all fields", { position: 'bottom-right', autoClose: 3000 })
     };
     try {
-      toast.loading("Creating your account", { position: "bottom-right", autoClose: 3000, toastId: 'registeringToast' });
+      // toast.loading("Creating your account", { position: "bottom-right", autoClose: 3000, toastId: 'registeringToast' });
       await register(inputs)
       dispatch(closeAuthModal());
 

@@ -8,15 +8,15 @@ import { useFetchProblem } from "@/hooks/useFetchProblem";
 import RectangleSkeleton from "../Skeletons/RectangleSkeleton";
 import CircleSkeleton from "../Skeletons/CircleSkeleton";
 import { cn } from "@/lib/utils";
+import { useGetUsersProblemData } from "@/hooks/useGetUsersProblemData";
 
 interface ProblemDescriptionProps {
   problem: Problem
 }
 
 const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
-
   const { problem: problemData, loading } = useFetchProblem(problem.id)
-  console.log(problemData)
+  const { data, setData } = useGetUsersProblemData(problem.id)
 
   return (
     <div className="py-4 px-6  border-1 rounded-lg bg-white">
@@ -30,6 +30,7 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
       <div className="pt-4 h-full rounded-r-md flex flex-col gap-3">
         <Title text={problem.title} as="h3" />
         <div className="flex gap-3 items-center">
+
           {loading ? <RectangleSkeleton /> : <div className={cn(
             "text-sm py-1 px-3 rounded-full",
             problemData?.difficulty === "Easy"
@@ -38,13 +39,25 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
                 ? "text-orange-500 bg-orange-100"
                 : "text-red-500 bg-red-100"
           )}>{problemData?.difficulty}</div>}
-          {loading ? <CircleSkeleton /> : <Check className="h-4 w-4 text-green-600" />}
-          {loading ? <RectangleSkeleton /> :
+
+          {loading
+            ? <CircleSkeleton />
+            : <Check className={cn("h-4 w-4 text-green-600", data.solved && "text-green-500")} />
+          }
+
+          {loading
+            ? <RectangleSkeleton />
+            :
             <div className="flex gap-1 items-center">
-              <ThumbsUp className="h-4 w-4" />
+              {<ThumbsUp className={cn("h-4 w-4", data.liked && "text-blue-500")} />}
               <span>{problemData?.likes}</span>
-            </div>}
-          {loading ? <CircleSkeleton /> : <Star className="h-4 w-4" />}
+            </div>
+          }
+
+          {loading
+            ? <CircleSkeleton />
+            : <Star className={cn("h-4 w-4", data.starred && "text-yellow-500")} />
+          }
         </div>
 
         <div dangerouslySetInnerHTML={{ __html: problem.problemStatement }}></div>

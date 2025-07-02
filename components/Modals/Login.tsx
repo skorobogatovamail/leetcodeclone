@@ -52,6 +52,7 @@ const Login: React.FC = () => {
   useEffect(() => {
     if (error) {
       toast.error('Login Failed', { position: 'bottom-right', autoClose: 3000 });
+      console.log('error', error)
     }
   }, [error]);
 
