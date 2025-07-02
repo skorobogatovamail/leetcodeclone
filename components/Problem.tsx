@@ -1,4 +1,4 @@
-import { Problem as ProblemType } from "@/data/problems";
+import { DBProblem as ProblemType } from "@/data/problems";
 import { cn } from "@/lib/utils";
 import { ArrowRight, Check, Flame } from "lucide-react";
 import Link from "next/link";
@@ -37,8 +37,8 @@ const Problem: React.FC<ProblemType> = ({
                   difficulty === "Easy"
                     ? "text-green-500"
                     : difficulty === "Medium"
-                    ? "text-orange-500"
-                    : "text-red-500"
+                      ? "text-orange-500"
+                      : "text-red-500"
                 )}
               >
                 {difficulty}

@@ -1,6 +1,6 @@
 import React from "react";
 import Problem from "./Problem";
-import { Problem as ProblemType } from "@/data/problems";
+import { DBProblem as ProblemType } from "@/data/problems";
 import LoadingSkeleton from "./Skeletons/LoadingSkeleton";
 
 type ProblemsListProps = {

@@ -66,8 +66,8 @@ function reverseLinkedList(head) {
 `;
 
 export const reverseLinkedList: Problem = {
-  id: "reversed-linked-list",
-  title: "2. Reversed Linked List",
+  id: "reverse-linked-list",
+  title: "2. Reverse Linked List",
   problemStatement: `
   <div class=" text-sm flex flex-col gap-3">
   <p >Given the <code>head</code> of a singly linked list, reverse the list, and return <em>the reversed list</em>.</p>

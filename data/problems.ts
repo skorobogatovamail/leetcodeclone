@@ -1,19 +1,22 @@
-export type Problem = {
+export type DBProblem = {
   id: string;
   title: string;
-  difficulty: string;
   category: string;
+  difficulty: string;
+  likes?: number;
   order: number;
   videoId?: string;
+  link?: string;
   description?: string;
 };
 
-export const problems: Problem[] = [
+export const problems: DBProblem[] = [
   {
     id: "two-sum",
     title: "Two Sum",
-    difficulty: "Easy",
     category: "Array",
+    difficulty: "Easy",
+    likes: 0,
     order: 1,
     videoId: "8-k1C6ehKuw",
     description:
@@ -26,6 +29,7 @@ export const problems: Problem[] = [
     category: "Linked List",
     order: 2,
     videoId: "",
+    likes: 0,
   },
   {
     id: "jump-game",
@@ -42,6 +46,7 @@ export const problems: Problem[] = [
     category: "Stack",
     order: 4,
     videoId: "xty7fr-k0TU",
+    likes: 0,
   },
   {
     id: "search-a-2d-matrix",
@@ -50,6 +55,7 @@ export const problems: Problem[] = [
     category: "Binary Search",
     order: 5,
     videoId: "ZfFl4torNg4",
+    likes: 0,
   },
   {
     id: "container-with-most-water",
@@ -58,6 +64,7 @@ export const problems: Problem[] = [
     category: "Two Pointers",
     order: 6,
     videoId: "",
+    likes: 0,
   },
   {
     id: "merge-intervals",
@@ -66,6 +73,7 @@ export const problems: Problem[] = [
     category: "intervals",
     order: 7,
     videoId: "",
+    likes: 0,
   },
   {
     id: "maximum-depth-of-binary-tree",
@@ -74,6 +82,7 @@ export const problems: Problem[] = [
     category: "Tree",
     order: 8,
     videoId: "4qYTqOiRMoM",
+    likes: 0,
   },
   {
     id: "best-time-to-buy-and-sell-stock",
@@ -82,6 +91,7 @@ export const problems: Problem[] = [
     category: "Array",
     order: 9,
     videoId: "",
+    likes: 0,
   },
   {
     id: "subsets",
@@ -90,5 +100,6 @@ export const problems: Problem[] = [
     category: "Backtracking",
     order: 10,
     videoId: "",
+    likes: 0,
   },
 ];
