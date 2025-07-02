@@ -3,11 +3,7 @@ import Title from './Title';
 import Subtitle from './Subtitle';
 import { Code, GraduationCap, Users } from 'lucide-react';
 
-type FeaturesProps = {
-
-};
-
-const Features: React.FC<FeaturesProps> = () => {
+const Features: React.FC = () => {
     return (
         <div className="flex flex-col items-center gap-5">
             <div className="flex flex-col items-center gap-5">

@@ -6,7 +6,7 @@ import { problems } from "@/data/problems/index";
 import React from "react";
 
 interface ProblemPageProps {
-  params: { pid: string }
+  params: Promise<{ pid: string }>
 }
 
 const ProblemPage: React.FC<ProblemPageProps> = async ({ params }) => {

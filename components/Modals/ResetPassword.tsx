@@ -13,7 +13,7 @@ import Subtitle from '../Subtitle';
 
 const ResetPassword: React.FC = () => {
     const [email, setEmail] = React.useState('');
-    const [sendPasswordResetEmail, sending, error] = useSendPasswordResetEmail(
+    const [sendPasswordResetEmail, error] = useSendPasswordResetEmail(
         auth
     );
 
@@ -31,7 +31,7 @@ const ResetPassword: React.FC = () => {
 
     useEffect(() => {
         if (error) {
-            toast.error(error.message, { position: 'bottom-right', autoClose: 3000 })
+            toast.error('Error resetting password', { position: 'bottom-right', autoClose: 3000 })
         }
     }, [error])
 

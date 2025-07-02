@@ -9,9 +9,7 @@ import Title from "@/components/Title";
 import { useFetchProblems } from "@/hooks/useFetchProblems";
 
 
-type TasksPageProps = {};
-
-const TasksPage: React.FC<TasksPageProps> = () => {
+const TasksPage: React.FC = () => {
 
   const { problems, loading, error } = useFetchProblems()
 

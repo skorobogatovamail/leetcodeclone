@@ -8,11 +8,8 @@ import Login from './Login';
 import Signup from './Signup';
 import ResetPassword from './ResetPassword';
 
-type ModalShowerProps = {
 
-};
-
-const ModalShower: React.FC<ModalShowerProps> = () => {
+const ModalShower: React.FC = () => {
     const isOpened = useSelector((state: RootState) => state.authModal.isOpened);
     const modalType = useSelector(
         (state: RootState) => state.authModal.modalType

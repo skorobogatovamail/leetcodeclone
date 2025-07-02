@@ -1,10 +1,6 @@
 import React from 'react';
 
-type ContainerProps = {
-
-};
-
-const Container: React.FC<React.PropsWithChildren<ContainerProps>> = ({ children }) => {
+const Container: React.FC<React.PropsWithChildren> = ({ children }) => {
 
     return <div className='min-h-screen'>{children}</div>
 }

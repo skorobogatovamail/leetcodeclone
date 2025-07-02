@@ -27,7 +27,7 @@ const BasicModal: React.FC<React.PropsWithChildren<BasicModalProps>> = ({
     };
     window.addEventListener("keydown", handleEsc);
     return () => window.removeEventListener("keydown", handleEsc);
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

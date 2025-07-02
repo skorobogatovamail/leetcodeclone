@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useCallback, useState } from "react";
-import { useRouter } from "next/navigation";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
 
 import {
@@ -11,7 +9,6 @@ import {
   openAuthModal,
 } from "@/lib/features/authModalSlice";
 import { useAppDispatch } from "@/lib/hooks";
-import { auth, firestore } from "@/firebase/firebase";
 
 import BasicModal from "./BasicModal";
 import { Button } from "../ui/button";

@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
 
-import { Problem } from "@/data/problems";
+import { DBProblem } from "@/data/problems";
 import { firestore } from "@/firebase/firebase";
 
 
 export const useFetchProblems = () => {
     const [loading, setLoading] = useState(true);
-    const [problems, setProblems] = useState<Problem[]>([])
+    const [problems, setProblems] = useState<DBProblem[]>([])
     const [error, setError] = useState<string | null>()
 
     useEffect(() => {
@@ -17,9 +17,9 @@ export const useFetchProblems = () => {
                 const q = query(problemsCollection, orderBy("order", "asc"));
 
                 const querySnapshot = await getDocs(q);
-                const problemData: Problem[] = []
+                const problemData: DBProblem[] = []
                 querySnapshot.forEach(el => (
-                    problemData.push(el.data() as Problem)
+                    problemData.push(el.data() as DBProblem)
                 ))
                 setProblems(problemData)
 

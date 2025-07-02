@@ -15,7 +15,7 @@ interface ProblemDescriptionProps {
 
 const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
 
-  const { problem: problemData, loading, error } = useFetchProblem(problem.id)
+  const { problem: problemData, loading } = useFetchProblem(problem.id)
   console.log(problemData)
 
   return (
