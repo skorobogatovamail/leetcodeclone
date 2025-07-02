@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
@@ -15,27 +15,28 @@ import { auth, firestore } from "@/firebase/firebase";
 
 import BasicModal from "./BasicModal";
 import { Button } from "../ui/button";
-import { collection, doc, setDoc } from "firebase/firestore";
+
+import { useRegister } from "@/hooks/useRegister";
 
 
 const Signup: React.FC = () => {
-  const router = useRouter();
+  const { register, loading } = useRegister()
   const dispatch = useAppDispatch();
-  const [createUserWithEmailAndPassword, loading, error] =
-    useCreateUserWithEmailAndPassword(auth);
-
-  const handleClick = (type: AuthModalState["modalType"]) => {
-    dispatch(openAuthModal(type));
-  };
   const [inputs, setInputs] = useState({
     name: "",
     email: "",
     password: "",
   });
 
+  const handleClick = useCallback((type: AuthModalState["modalType"]) => {
+    dispatch(openAuthModal(type));
+  }, [dispatch])
+
+
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -44,31 +45,9 @@ const Signup: React.FC = () => {
     };
     try {
       toast.loading("Creating your account", { position: "bottom-right", autoClose: 3000, toastId: 'registeringToast' });
-
-      const newUser = await createUserWithEmailAndPassword(
-        inputs.email,
-        inputs.password
-      );
-
-      if (!newUser) return;
-
-      const userData = {
-        name: inputs.name,
-        uid: newUser.user.uid,
-        email: newUser.user.email,
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
-        likedProblems: [],
-        dislikedProblems: [],
-        solvedProblems: [],
-        starredProblems: [],
-      };
-
-      const usersCollection = collection(firestore, "users");
-      await setDoc(doc(usersCollection, newUser.user.uid), userData)
-
-      router.push("/tasks");
+      await register(inputs)
       dispatch(closeAuthModal());
+
     } catch (err: unknown) {
       toast.error(err instanceof Error ? err.message : String(err), { position: 'bottom-right', autoClose: 3000 })
     } finally {
