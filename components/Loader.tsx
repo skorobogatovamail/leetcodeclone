@@ -8,6 +8,7 @@ import { LoaderCircle } from 'lucide-react';
 
 
 const Loader: React.FC<React.PropsWithChildren> = ({ children }) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [_, loading] = useAuthState(auth);
     return (
         <div>
