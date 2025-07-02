@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { useAuthState } from "react-firebase-hooks/auth"
 
 export const useGetUsersProblemData = (problemId: string) => {
-    const [data, setData] = useState({ solved: false, liked: false, starred: false })
+    const [userProblemData, setUserProblemData] = useState({ solved: false, liked: false, starred: false })
     const [user] = useAuthState(auth)
 
     useEffect(() => {
@@ -15,7 +15,7 @@ export const useGetUsersProblemData = (problemId: string) => {
             if (userSnap.exists()) {
                 const userData = userSnap.data()
                 const { solvedProblems, likedProblems, starredProblems } = userData;
-                setData({
+                setUserProblemData({
                     solved: solvedProblems.includes(problemId),
                     liked: likedProblems.includes(problemId),
                     starred: starredProblems.includes(problemId),
@@ -26,5 +26,5 @@ export const useGetUsersProblemData = (problemId: string) => {
         if (user) fetchData();
     }, [problemId, user])
 
-    return { data, setData }
+    return { userProblemData, setUserProblemData }
 }

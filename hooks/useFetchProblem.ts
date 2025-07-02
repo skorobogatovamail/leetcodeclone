@@ -29,5 +29,5 @@ export const useFetchProblem = (id: DBProblem['id']) => {
         fetchProblem();
     }, [id])
 
-    return { problem, loading, error }
+    return { problem, setProblem, loading, error }
 }
