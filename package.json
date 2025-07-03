@@ -24,6 +24,7 @@
     "npm": "^11.4.2",
     "postcss": "^8.5.4",
     "react": "^19.0.0",
+    "react-confetti": "^6.4.0",
     "react-dom": "^19.0.0",
     "react-firebase-hooks": "^5.1.1",
     "react-markdown": "^10.1.0",

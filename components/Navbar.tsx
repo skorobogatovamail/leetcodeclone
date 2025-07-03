@@ -19,6 +19,9 @@ import { AuthModalState, openAuthModal } from "@/lib/features/authModalSlice";
 import { Button } from "./ui/button";
 import Timer from "./Timer";
 import Logo from "./Logo";
+import { useRouter } from "next/router";
+import { Problem } from "@/data/types/problem";
+import { problems } from "@/data/problems/index";
 
 type NavbarProps = {
   problemPage?: boolean;
@@ -27,10 +30,10 @@ type NavbarProps = {
 const Navbar: React.FC<NavbarProps> = ({ problemPage }) => {
   const [user] = useAuthState(auth);
   const [signOut] = useSignOut(auth);
-
   const dispatch = useAppDispatch();
+  const router = useRouter()
 
-  const handleClick = (type: AuthModalState["modalType"]) => {
+  const handleOpenModal = (type: AuthModalState["modalType"]) => {
     dispatch(openAuthModal(type));
   };
 
@@ -46,6 +49,23 @@ const Navbar: React.FC<NavbarProps> = ({ problemPage }) => {
     }
   };
 
+  const handleNavigateProblems = (isForward: boolean) => {
+    const { order } = problems[router.query.pid as string];
+    const direction = isForward ? 1 : -1;
+    const nextProblemOrder = order + direction;
+    const nextProblemKey = Object.keys(problems).find((key) => problems[key].order === nextProblemOrder);
+
+    if (!nextProblemKey && isForward) {
+      const firstProblemKey = Object.keys(problems).find((key) => problems[key].order === 1);
+      router.push(`/problems/${firstProblemKey}`)
+    } else if (!nextProblemKey && !isForward) {
+      const lastProblemKey = Object.keys(problems).find((key) => problems[key].order === Object.keys(problems).length);
+      router.push(`/problems/${lastProblemKey}`)
+    } else {
+      router.push(`/problems/${nextProblemKey}`)
+    }
+  }
+
   return (
     <div
       className={cn(
@@ -56,14 +76,20 @@ const Navbar: React.FC<NavbarProps> = ({ problemPage }) => {
       <Logo />
       {problemPage && (
         <div className="flex items-center justify-center gap-4 ">
-          <div className="flex items-center justify-center rounded h-8 w-8 cursor-pointer text-neutral-500 hover:bg-neutral-200">
+          <div
+            className="flex items-center justify-center rounded h-8 w-8 cursor-pointer text-neutral-500 hover:bg-neutral-200"
+            onClick={() => handleNavigateProblems(true)}
+          >
             <ChevronLeft />
           </div>
           <div className="flex items-center justify-center gap-2 cursor-pointer">
             <List className="text-neutral-500  h-5 w-5 " />
             <span className="hover:text-neutral-500">Problem list</span>
           </div>
-          <div className="flex items-center justify-center rounded h-8 w-8 cursor-pointer text-neutral-500 hover:bg-neutral-200">
+          <div
+            className="flex items-center justify-center rounded h-8 w-8 cursor-pointer text-neutral-500 hover:bg-neutral-200"
+            onClick={() => handleNavigateProblems(false)}
+          >
             <ChevronRight />
           </div>
         </div>
@@ -84,10 +110,10 @@ const Navbar: React.FC<NavbarProps> = ({ problemPage }) => {
           </>
         ) : (
           <>
-            <Button variant="outline" onClick={() => handleClick("login")}>
+            <Button variant="outline" onClick={() => handleOpenModal("login")}>
               Login
             </Button>
-            <Button onClick={() => handleClick("register")}>Sign Up</Button>
+            <Button onClick={() => handleOpenModal("register")}>Sign Up</Button>
           </>
         )}
       </div>
