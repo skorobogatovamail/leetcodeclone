@@ -3,6 +3,7 @@
 import React from "react";
 import { toast } from "react-toastify";
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
+import { useRouter } from "next/router";
 import {
   ChevronLeft,
   ChevronRight,
@@ -15,13 +16,11 @@ import { cn } from "@/lib/utils";
 import { useAppDispatch } from "@/lib/hooks";
 import { auth } from "@/firebase/firebase";
 import { AuthModalState, openAuthModal } from "@/lib/features/authModalSlice";
+import { problems } from "@/data/problems/index";
 
 import { Button } from "./ui/button";
 import Timer from "./Timer";
 import Logo from "./Logo";
-import { useRouter } from "next/router";
-import { Problem } from "@/data/types/problem";
-import { problems } from "@/data/problems/index";
 
 type NavbarProps = {
   problemPage?: boolean;
