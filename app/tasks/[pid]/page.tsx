@@ -1,9 +1,8 @@
+import React from "react";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Workspace from "@/components/Workspace/Workspace";
 import { problems } from "@/data/problems/index";
-
-import React from "react";
 
 interface ProblemPageProps {
   params: Promise<{ pid: string }>

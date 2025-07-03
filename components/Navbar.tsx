@@ -3,7 +3,7 @@
 import React from "react";
 import { toast } from "react-toastify";
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
-import { useRouter } from "next/router";
+import { useParams, useRouter } from "next/navigation";
 import {
   ChevronLeft,
   ChevronRight,
@@ -31,6 +31,7 @@ const Navbar: React.FC<NavbarProps> = ({ problemPage }) => {
   const [signOut] = useSignOut(auth);
   const dispatch = useAppDispatch();
   const router = useRouter()
+  const { pid } = useParams();
 
   const handleOpenModal = (type: AuthModalState["modalType"]) => {
     dispatch(openAuthModal(type));
@@ -49,19 +50,19 @@ const Navbar: React.FC<NavbarProps> = ({ problemPage }) => {
   };
 
   const handleNavigateProblems = (isForward: boolean) => {
-    const { order } = problems[router.query.pid as string];
+    const { order } = problems[pid as string];
     const direction = isForward ? 1 : -1;
     const nextProblemOrder = order + direction;
     const nextProblemKey = Object.keys(problems).find((key) => problems[key].order === nextProblemOrder);
 
     if (!nextProblemKey && isForward) {
       const firstProblemKey = Object.keys(problems).find((key) => problems[key].order === 1);
-      router.push(`/problems/${firstProblemKey}`)
+      router.push(`/tasks/${firstProblemKey}`)
     } else if (!nextProblemKey && !isForward) {
       const lastProblemKey = Object.keys(problems).find((key) => problems[key].order === Object.keys(problems).length);
-      router.push(`/problems/${lastProblemKey}`)
+      router.push(`/tasks/${lastProblemKey}`)
     } else {
-      router.push(`/problems/${nextProblemKey}`)
+      router.push(`/tasks/${nextProblemKey}`)
     }
   }
 
@@ -77,7 +78,7 @@ const Navbar: React.FC<NavbarProps> = ({ problemPage }) => {
         <div className="flex items-center justify-center gap-4 ">
           <div
             className="flex items-center justify-center rounded h-8 w-8 cursor-pointer text-neutral-500 hover:bg-neutral-200"
-            onClick={() => handleNavigateProblems(true)}
+            onClick={() => handleNavigateProblems(false)}
           >
             <ChevronLeft />
           </div>
@@ -87,7 +88,7 @@ const Navbar: React.FC<NavbarProps> = ({ problemPage }) => {
           </div>
           <div
             className="flex items-center justify-center rounded h-8 w-8 cursor-pointer text-neutral-500 hover:bg-neutral-200"
-            onClick={() => handleNavigateProblems(false)}
+            onClick={() => handleNavigateProblems(true)}
           >
             <ChevronRight />
           </div>
