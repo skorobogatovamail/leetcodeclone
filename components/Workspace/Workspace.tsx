@@ -2,7 +2,7 @@
 
 import React from "react";
 import Split from "react-split";
-import ProblemDescription from "./ProblemDescription";
+import ProblemDescription from "./ProblemDescription/ProblemDescription";
 import Sandbox from "./Sandbox";
 import { Problem } from "@/data/types/problem";
 
