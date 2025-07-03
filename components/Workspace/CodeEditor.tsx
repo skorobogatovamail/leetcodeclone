@@ -6,10 +6,11 @@ import { vscodeLight } from "@uiw/codemirror-theme-vscode";
 import { javascript } from "@codemirror/lang-javascript";
 
 interface CodeEditorProps {
-  code: string
+  code: string,
+  onChange: (code: string) => void
 }
 
-const CodeEditor: React.FC<CodeEditorProps> = ({ code }) => {
+const CodeEditor: React.FC<CodeEditorProps> = ({ code, onChange }) => {
   const boilerplate = code;
   return (
     <div className="mt-2">
@@ -18,6 +19,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ code }) => {
         theme={vscodeLight}
         extensions={[javascript()]}
         style={{ fontSize: 14 }}
+        onChange={(value) => onChange(value)}
       />
     </div>
   );

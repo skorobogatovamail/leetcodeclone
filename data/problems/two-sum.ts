@@ -28,7 +28,7 @@ const handlerTwoSum = (fn: (nums: number[], target: number) => number[]) => {
 };
 
 const starterCodeTwoSum = `
-    function twoSum(nums, target) => {
+    function twoSum(nums, target) {
     // your code here
     };
 `;
@@ -79,7 +79,7 @@ export const twoSum: Problem = {
 <li class='mt-2 text-sm'>
 <strong>Only one valid answer exists.</strong>
 </li>`,
-  handlerFunction: handlerTwoSum.toString(),
+  handlerFunction: handlerTwoSum,
   starterCode: starterCodeTwoSum,
   order: 1,
   starterFunctionName: "function twoSum(",

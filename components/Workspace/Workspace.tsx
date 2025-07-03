@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Split from "react-split";
 import Confetti from 'react-confetti';
 
@@ -17,19 +17,19 @@ interface WorkspaceProps {
 
 const Workspace: React.FC<WorkspaceProps> = ({ problem }) => {
   const windowSize = useWindowSize()
-
+  const [success, setSuccess] = useState(false)
   return (
     <div>
       <Split className="split h-full">
         <ProblemDescription problem={problem} />
-        <Sandbox problem={problem} />
+        <Sandbox setSuccess={setSuccess} problem={problem} />
       </Split>
-      <Confetti
+      {success && <Confetti
         gravity={0.3}
         tweenDuration={4000}
         width={windowSize.width}
         height={windowSize.height}
-      />
+      />}
     </div>
   );
 };

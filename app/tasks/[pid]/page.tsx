@@ -11,6 +11,8 @@ interface ProblemPageProps {
 const ProblemPage: React.FC<ProblemPageProps> = async ({ params }) => {
   const { pid } = await params;
   const problem = problems[pid];
+  problem.handlerFunction = problem.handlerFunction.toString();
+
   if (!problem) {
     return notFound()
   }
