@@ -12,7 +12,7 @@ import LikesBadge from "./badges/LikesBadge";
 
 type ProblemDescriptionBadgesProps = {
     problemData: DBProblem,
-    userProblemData: any,
+    userProblemData: { liked: boolean, solved: boolean, starred: boolean },
     loading: boolean;
     updatingLike: boolean,
     updatingStar: boolean,

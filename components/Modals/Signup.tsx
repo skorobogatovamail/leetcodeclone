@@ -17,7 +17,7 @@ import { useRegister } from "@/hooks/useRegister";
 
 
 const Signup: React.FC = () => {
-  const { register, loading, error } = useRegister()
+  const { register, loading } = useRegister()
   const dispatch = useAppDispatch();
   const [inputs, setInputs] = useState({
     name: "",
