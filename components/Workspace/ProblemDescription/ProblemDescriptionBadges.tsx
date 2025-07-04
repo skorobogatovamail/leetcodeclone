@@ -16,6 +16,7 @@ type ProblemDescriptionBadgesProps = {
     loading: boolean;
     updatingLike: boolean,
     updatingStar: boolean,
+    _solved: boolean;
     onLike: () => void;
     onStar: () => void;
 };
@@ -26,6 +27,7 @@ const ProblemDescriptionBadges: React.FC<ProblemDescriptionBadgesProps> = ({
     loading,
     updatingLike,
     updatingStar,
+    _solved,
     onLike,
     onStar
 }) => {
@@ -39,7 +41,7 @@ const ProblemDescriptionBadges: React.FC<ProblemDescriptionBadgesProps> = ({
 
             {loading
                 ? <CircleSkeleton />
-                : <Check className={cn("h-4 w-4 text-green-600", userProblemData.solved && "text-green-500")} />
+                : (userProblemData.solved || _solved) && <Check className="h-4 w-4 text-green-500" />
             }
 
             {loading

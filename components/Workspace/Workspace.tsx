@@ -18,11 +18,12 @@ interface WorkspaceProps {
 const Workspace: React.FC<WorkspaceProps> = ({ problem }) => {
   const windowSize = useWindowSize()
   const [success, setSuccess] = useState(false)
+  const [solved, setSolved] = useState(false)
   return (
     <div>
       <Split className="split h-full">
-        <ProblemDescription problem={problem} />
-        <Sandbox setSuccess={setSuccess} problem={problem} />
+        <ProblemDescription problem={problem} _solved={solved} />
+        <Sandbox setSuccess={setSuccess} problem={problem} setSolved={setSolved} />
       </Split>
       {success && <Confetti
         gravity={0.3}

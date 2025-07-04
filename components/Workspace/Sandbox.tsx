@@ -5,7 +5,7 @@ import Split from "react-split";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 import { Problem } from "@/data/types/problem";
-import { auth } from "@/firebase/firebase";
+import { auth, firestore } from "@/firebase/firebase";
 
 import PreferenceNav from "./PreferenceNav";
 import CodeEditor from "./CodeEditor";
@@ -14,18 +14,20 @@ import EditorFooter from "./EditorFooter";
 import { toast } from "react-toastify";
 import { useParams } from "next/navigation";
 import { problems } from "@/data/problems/index";
+import { arrayUnion, collection, doc, getDoc, updateDoc } from "firebase/firestore";
 
 interface SandboxProps {
   problem: Problem,
-  setSuccess: React.Dispatch<React.SetStateAction<boolean>>
+  setSuccess: React.Dispatch<React.SetStateAction<boolean>>,
+  setSolved: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Sandbox: React.FC<SandboxProps> = ({ problem, setSuccess }) => {
+const Sandbox: React.FC<SandboxProps> = ({ problem, setSuccess, setSolved }) => {
   const [userCode, setUserCode] = React.useState(problem.starterCode);
   const [user] = useAuthState(auth)
   const { pid } = useParams()
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!user) {
       toast.error("You need to be logged in to submit your solution");
       return;
@@ -44,14 +46,19 @@ const Sandbox: React.FC<SandboxProps> = ({ problem, setSuccess }) => {
 
         if (success) {
           toast.success("Your solution passed all test cases!");
+          setSolved(true);
           setSuccess(true);
           setTimeout(() => {
             setSuccess(false);
           }, 4000);
+
+          const usersCollection = collection(firestore, 'users');
+          const userRef = doc(usersCollection, user.uid);
+          await updateDoc(userRef, {
+            solvedProblems: arrayUnion(pid)
+          });
         }
       }
-
-
     } catch (error) {
       console.log(error instanceof Error ? error.message : error);
       if (error instanceof Error && error.message.startsWith('AssertionError:')) {

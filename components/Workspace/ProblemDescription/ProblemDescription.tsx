@@ -19,10 +19,11 @@ import ProblemDescriptionConstraints from "./ProblemDescriptionConstraints";
 
 
 interface ProblemDescriptionProps {
-  problem: Problem
+  problem: Problem,
+  _solved: boolean
 }
 
-const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
+const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem, _solved }) => {
   const [user] = useAuthState(auth)
   const { problem: problemData, setProblem: setProblemData, loading } = useFetchProblem(problem.id)
   const { userProblemData, setUserProblemData } = useGetUsersProblemData(problem.id)
@@ -55,6 +56,7 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
             updatingStar={updatingStar}
             onLike={handleLike}
             onStar={handleStar}
+            _solved={_solved}
           />}
 
         <ReactMarkdown rehypePlugins={[rehypeRaw]}>{problem.problemStatement}</ReactMarkdown>
