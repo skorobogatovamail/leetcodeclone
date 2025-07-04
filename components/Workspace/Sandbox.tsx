@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Split from "react-split";
 import { useAuthState } from "react-firebase-hooks/auth";
 
@@ -70,7 +70,17 @@ const Sandbox: React.FC<SandboxProps> = ({ problem, setSuccess, setSolved }) => 
 
   const onChange = (code: string) => {
     setUserCode(code);
+    localStorage.setItem(`code-${pid}`, JSON.stringify(code));
   }
+
+  useEffect(() => {
+    const code = localStorage.getItem(`code-${pid}`)
+    if (user) {
+      setUserCode(code ? JSON.parse(code) : problem.starterCode)
+    } else {
+      setUserCode(problem.starterCode)
+    }
+  }, [pid, user, problem.starterCode])
 
   return (
     <Split
@@ -81,7 +91,7 @@ const Sandbox: React.FC<SandboxProps> = ({ problem, setSuccess, setSolved }) => 
     >
       <div className="py-4 border-1 rounded-lg bg-white overflow-auto">
         <PreferenceNav />
-        <CodeEditor code={problem.starterCode} onChange={onChange} />
+        <CodeEditor code={userCode} onChange={onChange} />
       </div>
       <div className=" py-4 border-1 rounded-lg bg-white overflow-auto">
         <TestCases testCases={problem.examples} />
