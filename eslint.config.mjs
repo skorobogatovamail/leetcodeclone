@@ -18,6 +18,35 @@ const eslintConfig = [
       "dist/**", // Игнорируем сборку
       "*.min.js", // Игнорируем минифицированные файлы
     ],
+    plugins: {
+      import: importPlugin,
+    },
+    rules: {
+      "import/order": [
+        "error",
+        {
+          groups: [
+            "builtin",
+            "external",
+            "internal",
+            "parent",
+            "sibling",
+            "index",
+          ],
+          pathGroups: [
+            {
+              pattern: "@/***",
+              group: "internal",
+            },
+          ],
+          "newlines-between": "always",
+          alphabetize: {
+            order: "asc",
+            caseInsensitive: true,
+          },
+        },
+      ],
+    },
   },
 ];
 
