@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "../ui/button";
 
 interface EditorFooterProps {
-  handleSubmit: () => void
+  handleSubmit: () => void;
 }
 
 const EditorFooter: React.FC<EditorFooterProps> = ({ handleSubmit }) => {

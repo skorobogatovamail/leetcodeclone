@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React from "react";
 
@@ -8,13 +8,11 @@ import Subtitle from "@/components/Subtitle";
 import Title from "@/components/Title";
 import { useFetchProblems } from "@/hooks/useFetchProblems";
 
-
 const TasksPage: React.FC = () => {
-
-  const { problems, loading, error } = useFetchProblems()
+  const { problems, loading, error } = useFetchProblems();
 
   if (error) {
-    return <div>Error: {error}</div>
+    return <div>Error: {error}</div>;
   }
 
   return (
@@ -34,7 +32,6 @@ const TasksPage: React.FC = () => {
         </section>
       </div>
     </>
-
   );
 };
 export default TasksPage;

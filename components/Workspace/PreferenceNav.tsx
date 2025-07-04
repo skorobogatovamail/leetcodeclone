@@ -16,7 +16,7 @@ const PreferenceNav: React.FC = () => {
       document.documentElement.requestFullscreen();
     }
     setIsFullscreen(!isFullscreen);
-  }
+  };
 
   useEffect(() => {
     function exitHandler() {
@@ -62,9 +62,7 @@ const PreferenceNav: React.FC = () => {
       <div className="flex gap-2 items-center group relative">
         <Button
           variant="ghost"
-          className={cn(
-            active === "code" && "text-neutral-500"
-          )}
+          className={cn(active === "code" && "text-neutral-500")}
           onClick={handleFullscreen}
         >
           <Fullscreen className="h-4 w-4" />

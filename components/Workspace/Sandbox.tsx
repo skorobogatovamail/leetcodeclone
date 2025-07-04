@@ -17,15 +17,19 @@ import { useParams } from "next/navigation";
 import { problems } from "@/data/problems/index";
 
 interface SandboxProps {
-  problem: Problem,
-  setSuccess: React.Dispatch<React.SetStateAction<boolean>>,
-  setSolved: React.Dispatch<React.SetStateAction<boolean>>
+  problem: Problem;
+  setSuccess: React.Dispatch<React.SetStateAction<boolean>>;
+  setSolved: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Sandbox: React.FC<SandboxProps> = ({ problem, setSuccess, setSolved }) => {
+const Sandbox: React.FC<SandboxProps> = ({
+  problem,
+  setSuccess,
+  setSolved,
+}) => {
   const [userCode, setUserCode] = React.useState(problem.starterCode);
-  const [user] = useAuthState(auth)
-  const { pid } = useParams()
+  const [user] = useAuthState(auth);
+  const { pid } = useParams();
 
   const handleSubmit = async () => {
     if (!user) {
@@ -33,16 +37,16 @@ const Sandbox: React.FC<SandboxProps> = ({ problem, setSuccess, setSolved }) => 
       return;
     }
     try {
-      const cleanedCode = userCode.trim().replace(/;\s*$/, '');
+      const cleanedCode = userCode.trim().replace(/;\s*$/, "");
       const userFunction = new Function(`return (${cleanedCode})`)();
 
       // Проверяем, что это действительно функция
-      if (typeof userFunction !== 'function') {
-        throw new Error('Your code must define a function');
+      if (typeof userFunction !== "function") {
+        throw new Error("Your code must define a function");
       }
       const handler = problems[pid as string].handlerFunction;
 
-      if (typeof handler === 'function') {
+      if (typeof handler === "function") {
         const success = handler(userFunction);
 
         if (success) {
@@ -53,35 +57,40 @@ const Sandbox: React.FC<SandboxProps> = ({ problem, setSuccess, setSolved }) => 
             setSuccess(false);
           }, 4000);
 
-          const usersCollection = collection(firestore, 'users');
+          const usersCollection = collection(firestore, "users");
           const userRef = doc(usersCollection, user.uid);
           await updateDoc(userRef, {
-            solvedProblems: arrayUnion(pid)
+            solvedProblems: arrayUnion(pid),
           });
         }
       }
     } catch (error) {
       console.log(error instanceof Error ? error.message : error);
-      if (error instanceof Error && error.message.startsWith('AssertionError:')) {
+      if (
+        error instanceof Error &&
+        error.message.startsWith("AssertionError:")
+      ) {
         toast.error("Your solution failed one or more test cases!");
       }
-      toast.error(error instanceof Error ? error.message : 'error');
+      toast.error(error instanceof Error ? error.message : "error");
     }
-  }
+  };
 
   const onChange = (code: string) => {
     setUserCode(code);
     localStorage.setItem(`code-${pid}`, JSON.stringify(code));
-  }
+  };
 
   useEffect(() => {
-    const code = localStorage.getItem(`code-${pid}`)
+    const code = localStorage.getItem(`code-${pid}`);
     if (user) {
-      setUserCode(code && code !== '{}' ? JSON.parse(code) : problem.starterCode)
+      setUserCode(
+        code && code !== "{}" ? JSON.parse(code) : problem.starterCode
+      );
     } else {
-      setUserCode(problem.starterCode)
+      setUserCode(problem.starterCode);
     }
-  }, [pid, user, problem.starterCode])
+  }, [pid, user, problem.starterCode]);
 
   return (
     <Split

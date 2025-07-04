@@ -9,7 +9,6 @@ import Loader from "@/components/Loader";
 
 import "./globals.css";
 
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -36,7 +35,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <StoreProvider>
-          <Loader >
+          <Loader>
             <Container>
               <ModalShower />
               {children}

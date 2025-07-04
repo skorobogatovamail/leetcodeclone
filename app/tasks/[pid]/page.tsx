@@ -5,7 +5,7 @@ import Workspace from "@/components/Workspace/Workspace";
 import { problems } from "@/data/problems/index";
 
 interface ProblemPageProps {
-  params: Promise<{ pid: string }>
+  params: Promise<{ pid: string }>;
 }
 
 const ProblemPage: React.FC<ProblemPageProps> = async ({ params }) => {
@@ -14,7 +14,7 @@ const ProblemPage: React.FC<ProblemPageProps> = async ({ params }) => {
   problem.handlerFunction = problem.handlerFunction.toString();
 
   if (!problem) {
-    return notFound()
+    return notFound();
   }
   return (
     <>
@@ -27,10 +27,8 @@ const ProblemPage: React.FC<ProblemPageProps> = async ({ params }) => {
 };
 export default ProblemPage;
 
-
 export const generateStaticParams = async () => {
-  return Object.keys(problems).map(path => ({
-    pid: path
-  }))
-
-}
+  return Object.keys(problems).map((path) => ({
+    pid: path,
+  }));
+};

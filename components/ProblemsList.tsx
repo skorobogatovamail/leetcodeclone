@@ -15,17 +15,19 @@ const ProblemsList: React.FC<ProblemsListProps> = ({ problems, loading }) => {
     <ul className="flex flex-col rounded-lg border border-neutral-200 divide-y divide-neutral-200">
       {problems.map((el: ProblemType) => (
         <li key={el.id}>
-
-          {loading ? <LoadingSkeleton /> : <Problem
-            id={el.id}
-            title={el.title}
-            difficulty={el.difficulty}
-            category={el.category}
-            order={el.order}
-            videoId={el.videoId}
-            solved={userSolvedProblems.includes(el.id)}
-          />}
-
+          {loading ? (
+            <LoadingSkeleton />
+          ) : (
+            <Problem
+              id={el.id}
+              title={el.title}
+              difficulty={el.difficulty}
+              category={el.category}
+              order={el.order}
+              videoId={el.videoId}
+              solved={userSolvedProblems.includes(el.id)}
+            />
+          )}
         </li>
       ))}
     </ul>

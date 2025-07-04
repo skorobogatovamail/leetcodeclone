@@ -15,9 +15,8 @@ import { Button } from "../ui/button";
 
 import { useRegister } from "@/hooks/useRegister";
 
-
 const Signup: React.FC = () => {
-  const { register, loading } = useRegister()
+  const { register, loading } = useRegister();
   const dispatch = useAppDispatch();
   const [inputs, setInputs] = useState({
     name: "",
@@ -25,33 +24,38 @@ const Signup: React.FC = () => {
     password: "",
   });
 
-  const handleClick = useCallback((type: AuthModalState["modalType"]) => {
-    dispatch(openAuthModal(type));
-  }, [dispatch])
-
+  const handleClick = useCallback(
+    (type: AuthModalState["modalType"]) => {
+      dispatch(openAuthModal(type));
+    },
+    [dispatch]
+  );
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!inputs.name || !inputs.email || !inputs.password) {
-      toast.error("Please fill all fields", { position: 'bottom-right', autoClose: 3000 })
-    };
+      toast.error("Please fill all fields", {
+        position: "bottom-right",
+        autoClose: 3000,
+      });
+    }
     try {
       // toast.loading("Creating your account", { position: "bottom-right", autoClose: 3000, toastId: 'registeringToast' });
-      await register(inputs)
+      await register(inputs);
       dispatch(closeAuthModal());
-
     } catch (err: unknown) {
-      toast.error(err instanceof Error ? err.message : String(err), { position: 'bottom-right', autoClose: 3000 })
+      toast.error(err instanceof Error ? err.message : String(err), {
+        position: "bottom-right",
+        autoClose: 3000,
+      });
     } finally {
-      toast.dismiss('registeringToast')
+      toast.dismiss("registeringToast");
     }
   };
-
 
   return (
     <BasicModal title="Create an account">

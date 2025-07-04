@@ -21,9 +21,7 @@ const Problem: React.FC<ProblemProps> = ({
     <div className="hover:bg-neutral-100 rounded-t-lg relative">
       <div className="px-6 py-5 flex gap-10 justify-between items-center">
         <div>{order}</div>
-        <div>
-          {solved && <Check className=" text-green-500" />}
-        </div>
+        <div>{solved && <Check className=" text-green-500" />}</div>
         <div className="grow">
           <span className="text-md font-semibold text-neutral-900 ">
             <Link href={`/tasks/${id}`}>

@@ -1,14 +1,14 @@
-'use client'
+"use client";
 
 import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { Problem } from "@/data/types/problem";
 
 interface TestCasesProps {
-  testCases: Problem['examples']
+  testCases: Problem["examples"];
 }
 const TestCases: React.FC<TestCasesProps> = ({ testCases }) => {
-  const [activeTestCase, setActiveTestCase] = useState<number>(0)
+  const [activeTestCase, setActiveTestCase] = useState<number>(0);
 
   return (
     <div className="px-6">
@@ -24,7 +24,8 @@ const TestCases: React.FC<TestCasesProps> = ({ testCases }) => {
           <Button
             key={el.id}
             variant={activeTestCase === idx ? "secondary" : "ghost"}
-            onClick={() => setActiveTestCase(idx)}>
+            onClick={() => setActiveTestCase(idx)}
+          >
             Case {el.id}
           </Button>
         ))}

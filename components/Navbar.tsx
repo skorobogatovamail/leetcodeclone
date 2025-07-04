@@ -30,7 +30,7 @@ const Navbar: React.FC<NavbarProps> = ({ problemPage }) => {
   const [user] = useAuthState(auth);
   const [signOut] = useSignOut(auth);
   const dispatch = useAppDispatch();
-  const router = useRouter()
+  const router = useRouter();
   const { pid } = useParams();
 
   const handleOpenModal = (type: AuthModalState["modalType"]) => {
@@ -53,18 +53,24 @@ const Navbar: React.FC<NavbarProps> = ({ problemPage }) => {
     const { order } = problems[pid as string];
     const direction = isForward ? 1 : -1;
     const nextProblemOrder = order + direction;
-    const nextProblemKey = Object.keys(problems).find((key) => problems[key].order === nextProblemOrder);
+    const nextProblemKey = Object.keys(problems).find(
+      (key) => problems[key].order === nextProblemOrder
+    );
 
     if (!nextProblemKey && isForward) {
-      const firstProblemKey = Object.keys(problems).find((key) => problems[key].order === 1);
-      router.push(`/tasks/${firstProblemKey}`)
+      const firstProblemKey = Object.keys(problems).find(
+        (key) => problems[key].order === 1
+      );
+      router.push(`/tasks/${firstProblemKey}`);
     } else if (!nextProblemKey && !isForward) {
-      const lastProblemKey = Object.keys(problems).find((key) => problems[key].order === Object.keys(problems).length);
-      router.push(`/tasks/${lastProblemKey}`)
+      const lastProblemKey = Object.keys(problems).find(
+        (key) => problems[key].order === Object.keys(problems).length
+      );
+      router.push(`/tasks/${lastProblemKey}`);
     } else {
-      router.push(`/tasks/${nextProblemKey}`)
+      router.push(`/tasks/${nextProblemKey}`);
     }
-  }
+  };
 
   return (
     <div

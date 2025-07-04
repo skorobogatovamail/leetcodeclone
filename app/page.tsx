@@ -7,7 +7,6 @@ import Title from "@/components/Title";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 
-
 export default function Home() {
   return (
     <>
@@ -37,6 +36,5 @@ export default function Home() {
         </main>
       </div>
     </>
-
   );
 }
