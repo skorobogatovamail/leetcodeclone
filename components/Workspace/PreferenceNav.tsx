@@ -19,7 +19,7 @@ const PreferenceNav: React.FC = () => {
   }
 
   useEffect(() => {
-    function exitHandler(e: any) {
+    function exitHandler() {
       if (!document.fullscreenElement) {
         setIsFullscreen(false);
         return;

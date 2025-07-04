@@ -85,7 +85,6 @@ export const useProblemActions = ({
                 });
             } catch (err) {
                 setError(`Failed to ${action} ${type}`);
-                console.error(err);
             } finally {
                 updatingState(false);
             }

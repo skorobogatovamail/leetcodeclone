@@ -3,13 +3,13 @@ import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { collection, doc, setDoc } from "firebase/firestore";
 
 import { auth, firestore } from "@/firebase/firebase";
+import { toast } from "react-toastify";
 
 export const useRegister = () => {
     const router = useRouter();
 
     const [createUserWithEmailAndPassword, loading, error] =
         useCreateUserWithEmailAndPassword(auth);
-    console.log('error', error)
 
     const register = async (inputs: Record<string, string>) => {
         try {
@@ -17,7 +17,6 @@ export const useRegister = () => {
                 inputs.email,
                 inputs.password
             );
-            console.log(newUser, 'newUser')
 
             if (newUser) {
                 const userData = {
@@ -39,7 +38,7 @@ export const useRegister = () => {
             }
 
         } catch (err) {
-            console.log('err', err)
+            toast.error(err instanceof Error ? err.message : String(err));
         }
     }
 

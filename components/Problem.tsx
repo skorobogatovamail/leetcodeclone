@@ -4,12 +4,17 @@ import { ArrowRight, Check, Flame } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
-const Problem: React.FC<ProblemType> = ({
+interface ProblemProps extends ProblemType {
+  solved: boolean;
+}
+
+const Problem: React.FC<ProblemProps> = ({
   id,
   title,
   difficulty,
   category,
   order,
+  solved,
   //   videoId,
 }) => {
   return (
@@ -17,7 +22,7 @@ const Problem: React.FC<ProblemType> = ({
       <div className="px-6 py-5 flex gap-10 justify-between items-center">
         <div>{order}</div>
         <div>
-          <Check className=" text-green-500" />
+          {solved && <Check className=" text-green-500" />}
         </div>
         <div className="grow">
           <span className="text-md font-semibold text-neutral-900 ">
