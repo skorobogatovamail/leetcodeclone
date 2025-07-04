@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import Split from "react-split";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { arrayUnion, collection, doc, updateDoc } from "firebase/firestore";
 
 import { Problem } from "@/data/types/problem";
 import { auth, firestore } from "@/firebase/firebase";
@@ -14,7 +15,6 @@ import EditorFooter from "./EditorFooter";
 import { toast } from "react-toastify";
 import { useParams } from "next/navigation";
 import { problems } from "@/data/problems/index";
-import { arrayUnion, collection, doc, getDoc, updateDoc } from "firebase/firestore";
 
 interface SandboxProps {
   problem: Problem,
