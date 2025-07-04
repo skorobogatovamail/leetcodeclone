@@ -34,13 +34,18 @@ const Sandbox: React.FC<SandboxProps> = ({ problem, setSuccess, setSolved }) => 
     }
     try {
       const cleanedCode = userCode.trim().replace(/;\s*$/, '');
+      console.log('cleanedCode', cleanedCode);
       const userFunction = new Function(`return (${cleanedCode})`)();
+
+      console.log('typeof userFunction', (typeof userFunction));
 
       // Проверяем, что это действительно функция
       if (typeof userFunction !== 'function') {
         throw new Error('Your code must define a function');
       }
       const handler = problems[pid as string].handlerFunction;
+
+      console.log('typeof handler', typeof handler);
       if (typeof handler === 'function') {
         const success = handler(userFunction);
 
