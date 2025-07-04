@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { Button } from "../ui/button";
+
 import { Problem } from "@/data/types/problem";
+
+import { Button } from "../ui/button";
 
 interface TestCasesProps {
   testCases: Problem["examples"];

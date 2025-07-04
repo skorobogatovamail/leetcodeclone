@@ -1,8 +1,9 @@
-import { DBProblem as ProblemType } from "@/data/problems";
-import { cn } from "@/lib/utils";
 import { ArrowRight, Check, Flame } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+
+import { DBProblem as ProblemType } from "@/data/problems";
+import { cn } from "@/lib/utils";
 
 interface ProblemProps extends ProblemType {
   solved: boolean;

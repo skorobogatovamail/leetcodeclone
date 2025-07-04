@@ -6,9 +6,10 @@ import { toast } from "react-toastify";
 
 import { auth } from "@/firebase/firebase";
 
-import BasicModal from "./BasicModal";
-import { Button } from "../ui/button";
 import Subtitle from "../Subtitle";
+import { Button } from "../ui/button";
+
+import BasicModal from "./BasicModal";
 
 const ResetPassword: React.FC = () => {
   const [email, setEmail] = React.useState("");

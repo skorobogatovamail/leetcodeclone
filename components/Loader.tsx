@@ -1,10 +1,10 @@
 "use client";
 
+import { LoaderCircle } from "lucide-react";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 import { auth } from "@/firebase/firebase";
-import { LoaderCircle } from "lucide-react";
 
 const Loader: React.FC<React.PropsWithChildren> = ({ children }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -1,4 +1,5 @@
 import assert from "assert";
+
 import { Problem } from "../types/problem";
 
 export const validParenthesesHandler = (fn: (s: string) => boolean) => {

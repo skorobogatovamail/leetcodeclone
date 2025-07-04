@@ -3,6 +3,7 @@
 import React, { useCallback, useState } from "react";
 import { toast } from "react-toastify";
 
+import { useRegister } from "@/hooks/useRegister";
 import {
   AuthModalState,
   closeAuthModal,
@@ -10,10 +11,9 @@ import {
 } from "@/lib/features/authModalSlice";
 import { useAppDispatch } from "@/lib/hooks";
 
-import BasicModal from "./BasicModal";
 import { Button } from "../ui/button";
 
-import { useRegister } from "@/hooks/useRegister";
+import BasicModal from "./BasicModal";
 
 const Signup: React.FC = () => {
   const { register, loading } = useRegister();

@@ -1,5 +1,6 @@
-import React from "react";
 import { notFound } from "next/navigation";
+import React from "react";
+
 import Navbar from "@/components/Navbar";
 import Workspace from "@/components/Workspace/Workspace";
 import { problems } from "@/data/problems/index";

@@ -1,7 +1,8 @@
-import { DBProblem } from "@/data/problems";
-import { firestore } from "@/firebase/firebase";
 import { collection, doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
+
+import { DBProblem } from "@/data/problems";
+import { firestore } from "@/firebase/firebase";
 
 export const useFetchProblem = (id: DBProblem["id"]) => {
   const [problem, setProblem] = useState<DBProblem | null>();

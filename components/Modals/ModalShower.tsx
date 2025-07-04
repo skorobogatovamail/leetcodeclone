@@ -1,11 +1,13 @@
 "use client";
 
-import { RootState } from "@/lib/store";
 import React from "react";
 import { useSelector } from "react-redux";
+
+import { RootState } from "@/lib/store";
+
 import Login from "./Login";
-import Signup from "./Signup";
 import ResetPassword from "./ResetPassword";
+import Signup from "./Signup";
 
 const ModalShower: React.FC = () => {
   const isOpened = useSelector((state: RootState) => state.authModal.isOpened);

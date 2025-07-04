@@ -1,13 +1,13 @@
 "use client";
 
-import React from "react";
-import CodeMirror from "@uiw/react-codemirror";
-import { vscodeLight } from "@uiw/codemirror-theme-vscode";
+import { indentWithTab } from "@codemirror/commands";
 import { javascript } from "@codemirror/lang-javascript";
 import { indentUnit } from "@codemirror/language";
 import { EditorView } from "@codemirror/view";
 import { keymap } from "@codemirror/view";
-import { indentWithTab } from "@codemirror/commands";
+import { vscodeLight } from "@uiw/codemirror-theme-vscode";
+import CodeMirror from "@uiw/react-codemirror";
+import React from "react";
 
 interface CodeEditorProps {
   code: string;

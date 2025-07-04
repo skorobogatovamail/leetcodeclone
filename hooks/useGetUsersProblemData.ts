@@ -1,7 +1,8 @@
-import { auth, firestore } from "@/firebase/firebase";
 import { collection, doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+
+import { auth, firestore } from "@/firebase/firebase";
 
 export const useGetUsersProblemData = (problemId: string) => {
   const [userProblemData, setUserProblemData] = useState({

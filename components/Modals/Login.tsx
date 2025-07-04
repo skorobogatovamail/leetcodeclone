@@ -1,18 +1,21 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import BasicModal from "./BasicModal";
-import { Button } from "../ui/button";
-import { useAppDispatch } from "@/lib/hooks";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
+
+import { auth } from "@/firebase/firebase";
 import {
   AuthModalState,
   closeAuthModal,
   openAuthModal,
 } from "@/lib/features/authModalSlice";
-import { useRouter } from "next/navigation";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { auth } from "@/firebase/firebase";
-import { toast } from "react-toastify";
+import { useAppDispatch } from "@/lib/hooks";
+
+import { Button } from "../ui/button";
+
+import BasicModal from "./BasicModal";
 
 const Login: React.FC = () => {
   const router = useRouter();

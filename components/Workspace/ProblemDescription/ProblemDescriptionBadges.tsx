@@ -1,11 +1,12 @@
-import React from "react";
 import { Check, LoaderCircle, Star } from "lucide-react";
+import React from "react";
 
-import { cn } from "@/lib/utils";
 import { DBProblem } from "@/data/problems";
+import { cn } from "@/lib/utils";
 
-import RectangleSkeleton from "../../Skeletons/RectangleSkeleton";
 import CircleSkeleton from "../../Skeletons/CircleSkeleton";
+import RectangleSkeleton from "../../Skeletons/RectangleSkeleton";
+
 import DifficultyBadge from "./badges/DifficultyBadge";
 import LikesBadge from "./badges/LikesBadge";
 

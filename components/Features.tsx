@@ -1,7 +1,8 @@
-import React from "react";
-import Title from "./Title";
-import Subtitle from "./Subtitle";
 import { Code, GraduationCap, Users } from "lucide-react";
+import React from "react";
+
+import Subtitle from "./Subtitle";
+import Title from "./Title";
 
 const Features: React.FC = () => {
   return (

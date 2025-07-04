@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import Split from "react-split";
 import Confetti from "react-confetti";
+import Split from "react-split";
 
 import { Problem } from "@/data/types/problem";
 import { useWindowSize } from "@/hooks/useWindowSize";

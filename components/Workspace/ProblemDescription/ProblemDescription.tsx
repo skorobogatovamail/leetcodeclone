@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
-import { useAuthState } from "react-firebase-hooks/auth";
 
 import { Problem } from "@/data/types/problem";
 import { auth } from "@/firebase/firebase";
@@ -12,10 +12,11 @@ import { useGetUsersProblemData } from "@/hooks/useGetUsersProblemData";
 import { useProblemActions } from "@/hooks/useProblemActions";
 
 import Title from "../../Title";
+
 import ProblemDescriptionBadges from "./ProblemDescriptionBadges";
-import ProblemDescriptionTitle from "./ProblemDescriptionTitle";
-import ProblemDescriptionExamples from "./ProblemDescriptionExamples";
 import ProblemDescriptionConstraints from "./ProblemDescriptionConstraints";
+import ProblemDescriptionExamples from "./ProblemDescriptionExamples";
+import ProblemDescriptionTitle from "./ProblemDescriptionTitle";
 
 interface ProblemDescriptionProps {
   problem: Problem;

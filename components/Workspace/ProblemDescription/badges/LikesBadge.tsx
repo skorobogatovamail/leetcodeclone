@@ -1,8 +1,8 @@
-import React from "react";
 import { ThumbsUp } from "lucide-react";
+import React from "react";
 
-import { cn } from "@/lib/utils";
 import { DBProblem } from "@/data/problems";
+import { cn } from "@/lib/utils";
 
 type LikesBadgeProps = {
   likes: DBProblem["likes"] | undefined;

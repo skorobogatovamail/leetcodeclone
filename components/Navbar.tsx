@@ -1,9 +1,5 @@
 "use client";
 
-import React from "react";
-import { toast } from "react-toastify";
-import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
-import { useParams, useRouter } from "next/navigation";
 import {
   ChevronLeft,
   ChevronRight,
@@ -11,16 +7,20 @@ import {
   LogOut,
   UserCircle2,
 } from "lucide-react";
+import { useParams, useRouter } from "next/navigation";
+import React from "react";
+import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
 
-import { cn } from "@/lib/utils";
-import { useAppDispatch } from "@/lib/hooks";
+import { problems } from "@/data/problems/index";
 import { auth } from "@/firebase/firebase";
 import { AuthModalState, openAuthModal } from "@/lib/features/authModalSlice";
-import { problems } from "@/data/problems/index";
+import { useAppDispatch } from "@/lib/hooks";
+import { cn } from "@/lib/utils";
 
-import { Button } from "./ui/button";
-import Timer from "./Timer";
 import Logo from "./Logo";
+import Timer from "./Timer";
+import { Button } from "./ui/button";
 
 type NavbarProps = {
   problemPage?: boolean;

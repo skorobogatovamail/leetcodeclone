@@ -1,8 +1,10 @@
 import React from "react";
-import Problem from "./Problem";
+
 import { DBProblem as ProblemType } from "@/data/problems";
-import LoadingSkeleton from "./Skeletons/LoadingSkeleton";
 import { useGetSolvedProblems } from "@/hooks/useGetSolvedProblems";
+
+import Problem from "./Problem";
+import LoadingSkeleton from "./Skeletons/LoadingSkeleton";
 
 type ProblemsListProps = {
   problems: ProblemType[];

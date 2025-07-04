@@ -1,11 +1,13 @@
 "use client";
 
-import React, { useEffect } from "react";
 import { X } from "lucide-react";
-import { Button } from "../ui/button";
-import Title from "../Title";
-import { useAppDispatch } from "@/lib/hooks";
+import React, { useEffect } from "react";
+
 import { closeAuthModal } from "@/lib/features/authModalSlice";
+import { useAppDispatch } from "@/lib/hooks";
+
+import Title from "../Title";
+import { Button } from "../ui/button";
 
 type BasicModalProps = {
   title: string;

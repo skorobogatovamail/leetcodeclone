@@ -1,6 +1,6 @@
+import { collection, doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { collection, doc, getDoc } from "firebase/firestore";
 
 import { auth, firestore } from "@/firebase/firebase";
 

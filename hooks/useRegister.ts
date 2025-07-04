@@ -1,9 +1,9 @@
+import { collection, doc, setDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { collection, doc, setDoc } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 import { auth, firestore } from "@/firebase/firebase";
-import { toast } from "react-toastify";
 
 export const useRegister = () => {
   const router = useRouter();

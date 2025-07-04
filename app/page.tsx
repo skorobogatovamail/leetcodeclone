@@ -1,11 +1,11 @@
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 import Features from "@/components/Features";
+import Navbar from "@/components/Navbar";
 import Subtitle from "@/components/Subtitle";
 import Title from "@/components/Title";
 import { Button } from "@/components/ui/button";
-import Navbar from "@/components/Navbar";
 
 export default function Home() {
   return (

@@ -1,4 +1,5 @@
 import assert from "assert";
+
 import { Problem } from "../types/problem";
 
 const handlerTwoSum = (fn: (nums: number[], target: number) => number[]) => {

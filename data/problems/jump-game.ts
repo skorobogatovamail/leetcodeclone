@@ -1,4 +1,5 @@
 import assert from "assert";
+
 import { Problem } from "../types/problem";
 
 const jumpGameHandler = (fn: (arr: number[]) => boolean) => {

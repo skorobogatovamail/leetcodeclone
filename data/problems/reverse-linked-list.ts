@@ -1,6 +1,7 @@
 import assert from "assert";
-import { Problem } from "../types/problem";
+
 import example from "../images/reverseLL.jpg";
+import { Problem } from "../types/problem";
 
 class LinkedList {
   value: number;

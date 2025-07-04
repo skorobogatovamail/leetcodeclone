@@ -2,8 +2,10 @@
 
 import { Code, Fullscreen, TestTubeDiagonal } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import { Button } from "../ui/button";
+
 import { cn } from "@/lib/utils";
+
+import { Button } from "../ui/button";
 
 const PreferenceNav: React.FC = () => {
   const [active, setActive] = useState<"code" | "testCases">("code");

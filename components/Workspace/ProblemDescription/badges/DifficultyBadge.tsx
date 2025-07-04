@@ -1,6 +1,7 @@
+import React from "react";
+
 import { DBProblem } from "@/data/problems";
 import { cn } from "@/lib/utils";
-import React from "react";
 
 type DifficultyBadgeProps = {
   difficulty: DBProblem["difficulty"];

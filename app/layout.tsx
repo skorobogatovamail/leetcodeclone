@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 
-import StoreProvider from "@/lib/StoreProvider";
 import Container from "@/components/Container";
-import ModalShower from "@/components/Modals/ModalShower";
 import Loader from "@/components/Loader";
+import ModalShower from "@/components/Modals/ModalShower";
+import StoreProvider from "@/lib/StoreProvider";
 
 import "./globals.css";
 

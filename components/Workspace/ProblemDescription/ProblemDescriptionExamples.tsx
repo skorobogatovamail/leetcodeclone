@@ -1,5 +1,7 @@
-import { Problem } from "@/data/types/problem";
 import React from "react";
+
+import { Problem } from "@/data/types/problem";
+
 import ProblemExample from "./ProblemExample";
 
 type ProblemDescriptionExamplesProps = {

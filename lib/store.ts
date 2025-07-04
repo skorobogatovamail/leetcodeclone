@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+
 import authModalReducer from "./features/authModalSlice";
 
 export const makeStore = () => {

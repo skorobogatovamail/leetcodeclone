@@ -1,20 +1,20 @@
 "use client";
 
-import React, { useEffect } from "react";
-import Split from "react-split";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { arrayUnion, collection, doc, updateDoc } from "firebase/firestore";
+import { useParams } from "next/navigation";
+import React, { useEffect } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import Split from "react-split";
+import { toast } from "react-toastify";
 
+import { problems } from "@/data/problems/index";
 import { Problem } from "@/data/types/problem";
 import { auth, firestore } from "@/firebase/firebase";
 
-import PreferenceNav from "./PreferenceNav";
 import CodeEditor from "./CodeEditor";
-import TestCases from "./TestCases";
 import EditorFooter from "./EditorFooter";
-import { toast } from "react-toastify";
-import { useParams } from "next/navigation";
-import { problems } from "@/data/problems/index";
+import PreferenceNav from "./PreferenceNav";
+import TestCases from "./TestCases";
 
 interface SandboxProps {
   problem: Problem;
