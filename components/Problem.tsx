@@ -16,7 +16,6 @@ const Problem: React.FC<ProblemProps> = ({
   category,
   order,
   solved,
-  //   videoId,
 }) => {
   return (
     <div className="hover:bg-neutral-100 rounded-t-lg relative">

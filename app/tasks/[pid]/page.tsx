@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import React from "react";
 
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/Navbar/Navbar";
 import Workspace from "@/components/Workspace/Workspace";
 import { problems } from "@/data/problems/index";
 

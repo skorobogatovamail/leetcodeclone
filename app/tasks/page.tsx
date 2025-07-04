@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/Navbar/Navbar";
 import ProblemsList from "@/components/ProblemsList";
 import Subtitle from "@/components/Subtitle";
 import Title from "@/components/Title";
