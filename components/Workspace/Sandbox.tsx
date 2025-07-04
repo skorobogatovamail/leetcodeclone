@@ -76,7 +76,7 @@ const Sandbox: React.FC<SandboxProps> = ({ problem, setSuccess, setSolved }) => 
   useEffect(() => {
     const code = localStorage.getItem(`code-${pid}`)
     if (user) {
-      setUserCode(code ? JSON.parse(code) : problem.starterCode)
+      setUserCode(code && code !== '{}' ? JSON.parse(code) : problem.starterCode)
     } else {
       setUserCode(problem.starterCode)
     }
