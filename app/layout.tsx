@@ -3,9 +3,11 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 
 import Container from "@/components/Container";
+import GoogleAuthProvider from "@/components/GoogleAuthProvider";
 import Loader from "@/components/Loader";
 import ModalShower from "@/components/Modals/ModalShower";
 import StoreProvider from "@/lib/StoreProvider";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
 
 import "./globals.css";
 
@@ -34,15 +36,19 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <StoreProvider>
-          <Loader>
-            <Container>
-              <ModalShower />
-              {children}
-            </Container>
-          </Loader>
-          <ToastContainer />
-        </StoreProvider>
+        <ReactQueryProvider>
+          <GoogleAuthProvider>
+            <StoreProvider>
+              <Loader>
+                <Container>
+                  <ModalShower />
+                  {children}
+                </Container>
+              </Loader>
+              <ToastContainer />
+            </StoreProvider>
+          </GoogleAuthProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );

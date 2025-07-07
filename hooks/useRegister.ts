@@ -1,4 +1,5 @@
-import { collection, doc, setDoc } from "firebase/firestore";
+// hooks/useRegister.ts
+import { doc, setDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
@@ -13,31 +14,41 @@ export const useRegister = () => {
 
   const register = async (inputs: Record<string, string>) => {
     try {
+      if (!inputs.email || !inputs.password || !inputs.name) {
+        throw new Error("Please fill all fields");
+      }
+
       const newUser = await createUserWithEmailAndPassword(
         inputs.email,
         inputs.password
       );
 
-      if (newUser) {
-        const userData = {
-          name: inputs.name,
-          uid: newUser.user.uid,
-          email: newUser.user.email,
-          createdAt: Date.now(),
-          updatedAt: Date.now(),
-          likedProblems: [],
-          dislikedProblems: [],
-          solvedProblems: [],
-          starredProblems: [],
-        };
-
-        const usersCollection = collection(firestore, "users");
-        await setDoc(doc(usersCollection, newUser.user.uid), userData);
-
-        router.push("/tasks");
+      if (!newUser) {
+        throw new Error("Failed to create user");
       }
+
+      const userData = {
+        name: inputs.name,
+        uid: newUser.user.uid,
+        email: newUser.user.email,
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+        likedProblems: [],
+        dislikedProblems: [],
+        solvedProblems: [],
+        starredProblems: [],
+        photoURL: "",
+        emailVerified: false,
+        provider: "email",
+      };
+
+      await setDoc(doc(firestore, "users", newUser.user.uid), userData);
+      router.push("/tasks");
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : String(err));
+      const errorMessage =
+        err instanceof Error ? err.message : "Registration failed";
+      toast.error(errorMessage);
+      throw err; // Пробрасываем ошибку для обработки в компоненте
     }
   };
 

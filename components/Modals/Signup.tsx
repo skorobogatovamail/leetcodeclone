@@ -11,6 +11,7 @@ import {
 } from "@/lib/features/authModalSlice";
 import { useAppDispatch } from "@/lib/hooks";
 
+import GoogleAuth from "../GoogleAuth";
 import { Button } from "../ui/button";
 
 import BasicModal from "./BasicModal";
@@ -42,6 +43,7 @@ const Signup: React.FC = () => {
         position: "bottom-right",
         autoClose: 3000,
       });
+      return;
     }
     try {
       // toast.loading("Creating your account", { position: "bottom-right", autoClose: 3000, toastId: 'registeringToast' });
@@ -137,6 +139,25 @@ const Signup: React.FC = () => {
               </Button>
             )}
           </div>
+
+          {/* Разделитель "Or continue with" */}
+          <div className="relative my-4">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-300" />
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-white text-gray-500">
+                Or continue with
+              </span>
+            </div>
+          </div>
+
+          {/* Компонент Google Auth */}
+          <div className="flex justify-center">
+            <GoogleAuth />
+          </div>
+
+          {/* Ссылка на вход */}
           <div className="pt-2 text-sm flex gap-2 items-center">
             <span>Already have an account?</span>
             <Button
@@ -152,4 +173,5 @@ const Signup: React.FC = () => {
     </BasicModal>
   );
 };
+
 export default Signup;
